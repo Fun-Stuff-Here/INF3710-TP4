@@ -2,6 +2,7 @@
 
 /*1) (2 points) Lister toutes les plantes qui sont actuellement dans les rangs d’un jardin*/
 
+
 /*2) (2 points) Lister le nombre de rangs minimum et maximum sur les parcelles d’un jardin donné (choisissez-en dans vos données)*/
 
 /*3) (2 points) Lister les détails des parcelles qui ont la variété de plante A et la variété de plante B*/

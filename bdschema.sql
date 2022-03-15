@@ -32,13 +32,33 @@ CREATE TABLE Rang(
 	XParcelle NUMERIC(6,0),
 	YParcelle NUMERIC(6,0),
 	NumeroRang SERIAL,
-	DebutJachere DATE,
 	X NUMERIC(6,0),
 	Y NUMERIC(6,0),
 	PRIMARY KEY (JardinId, XParcelle, YParcelle, NumeroRang),
 	FOREIGN KEY (JardinId,XParcelle, YParcelle) REFERENCES Parcelle(JardinId, X,Y) ON UPDATE CASCADE ON DELETE CASCADE
+	
+);
+
+CREATE TABLE RangCultive(
+	JardinId VARCHAR(10),
+	XParcelle NUMERIC(6,0),
+	YParcelle NUMERIC(6,0),
+	NumeroRang SERIAL,
+	PRIMARY KEY (JardinId, XParcelle, YParcelle, NumeroRang),
+	FOREIGN KEY (JardinId, XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId, XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE RangJachere(
+	JardinId VARCHAR(10),
+	XParcelle NUMERIC(6,0),
+	YParcelle NUMERIC(6,0),
+	NumeroRang SERIAL,
+	DebutJachere DATE,
+	PRIMARY KEY (JardinId, XParcelle, YParcelle, NumeroRang),
+	FOREIGN KEY (JardinId, XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId, XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE
 	/*CONSTRAINT siJachereTropLong CHECK ((year(current_date) - year(DebutJachere))<1)*/
 );
+
 
 CREATE TABLE Variete(
 	VarieteId SERIAL,
@@ -63,7 +83,19 @@ CREATE TABLE Plante(
 	Type VARCHAR(20) NOT NULL,
 	SousType VARCHAR(20),
 	PRIMARY KEY(NomLatin),
-	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId)
+	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId) ON UPDATE CASCADE ON DELETE SET NULL
+);
+
+CREATE TABLE MiseEnPlace(
+	NomLatin VARCHAR(20),
+	JardinId VARCHAR(10),
+	XParcelle NUMERIC(6,0),
+	YParcelle NUMERIC(6,0),
+	NumeroRang SERIAL,
+	MiseEnPlace VARCHAR(20),
+	PRIMARY KEY (NomLatin,JardinId, XParcelle,YParcelle,NumeroRang),
+	FOREIGN KEY (NomLatin) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (JardinId,XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId,XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Compagnonnage(
@@ -72,8 +104,8 @@ CREATE TABLE Compagnonnage(
 	Benifice TEXT,
 	Inconvenient TEXT,
 	PRIMARY KEY (Plante, PlanteAccompagnee),
-	FOREIGN KEY (Plante) REFERENCES Plante(NomLatin),
-	FOREIGN KEY (PlanteAccompagnee) REFERENCES Plante(NomLatin)
+	FOREIGN KEY (Plante) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (PlanteAccompagnee) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -88,13 +120,9 @@ CREATE TABLE SubirMenace(
 	Plante VARCHAR(20),
 	MenaceId SERIAL,
 	PRIMARY KEY (MenaceId,Plante),
-	FOREIGN KEY (Plante) REFERENCES Plante(NomLatin),
-	FOREIGN KEY (MenaceId) REFERENCES Menace(MenaceId)
+	FOREIGN KEY (Plante) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (MenaceId) REFERENCES Menace(MenaceId) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-
-
-
 
 CREATE TABLE Semencier(
 	nom VARCHAR(20),
@@ -107,23 +135,11 @@ CREATE TABLE ProduitSemence(
 	VarieteId SERIAL,
 	EstBiologique BOOLEAN,
 	PRIMARY KEY(Semencier,VarieteId),
-	FOREIGN KEY (Semencier) REFERENCES Semencier(nom),
-	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId)
+	FOREIGN KEY (Semencier) REFERENCES Semencier(nom) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE MiseEnPlace(
-	VarieteId SERIAL,
-	JardinId VARCHAR(10),
-	XParcelle NUMERIC(6,0),
-	YParcelle NUMERIC(6,0),
-	NumeroRang SERIAL,
-	MiseEnPlace VARCHAR(20),
-	PRIMARY KEY (VarieteId,JardinId, XParcelle,YParcelle,NumeroRang),
-	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId),
-	FOREIGN KEY (JardinId,XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId,XParcelle, YParcelle, NumeroRang)
-);
 
-/*Revoir pour les ON DELETE et ON UPDATE*/
 
 
 
