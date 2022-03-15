@@ -3,10 +3,10 @@ CREATE SCHEMA "Jardin";
 
 SET search_path = "Jardin";
 
-CREATE TABLE JARDIN (
+CREATE TABLE Jardin (
 	JardinId VARCHAR(10),
 	Nom VARCHAR(20),
-	Surface NUMERIC(9,3),
+	SurfaceJardin NUMERIC(9,3),
 	PotagerFlag BOOLEAN DEFAULT FALSE,
 	TypeSol VARCHAR(20),
 	VergerFlag BOOLEAN DEFAULT FALSE,
@@ -18,11 +18,11 @@ CREATE TABLE JARDIN (
 
 CREATE TABLE Parcelle (
 	JardinId VARCHAR(10),
-	X NUMERIC(6,0),
-	Y NUMERIC(6,0),
+	XParcelle NUMERIC(6,0),
+	YParcelle NUMERIC(6,0),
 	Largeur NUMERIC(9,3),
 	Longeur NUMERIC(9,3),
-	PRIMARY KEY (JardinId, X, Y),
+	PRIMARY KEY (JardinId, XParcelle, YParcelle),
 	FOREIGN KEY (JardinId) REFERENCES Jardin(JardinId) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT mesurePositive CHECK (Largeur>0 AND Longeur>0)
 );
@@ -32,10 +32,10 @@ CREATE TABLE Rang(
 	XParcelle NUMERIC(6,0),
 	YParcelle NUMERIC(6,0),
 	NumeroRang SERIAL,
-	X NUMERIC(6,0),
-	Y NUMERIC(6,0),
+	XRang NUMERIC(6,0),
+	YRang NUMERIC(6,0),
 	PRIMARY KEY (JardinId, XParcelle, YParcelle, NumeroRang),
-	FOREIGN KEY (JardinId,XParcelle, YParcelle) REFERENCES Parcelle(JardinId, X,Y) ON UPDATE CASCADE ON DELETE CASCADE
+	FOREIGN KEY (JardinId,XParcelle, YParcelle) REFERENCES Parcelle(JardinId, XParcelle, YParcelle) ON UPDATE CASCADE ON DELETE CASCADE
 	
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE RangJachere(
 
 CREATE TABLE Variete(
 	VarieteId SERIAL,
-	Nom VARCHAR(20),
+	NomVariete VARCHAR(20),
 	AnneeMiseEnMarche NUMERIC(4,0),
 	DescriptionPlantation TEXT,
 	DescriptionEntretien TEXT,
@@ -139,7 +139,31 @@ CREATE TABLE ProduitSemence(
 	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE VIEW VueRangCultive
+AS SELECT * FROM RangCultive NATURAL JOIN RANG;
 
+CREATE VIEW VueRangJachere
+AS SELECT * FROM RangJachere NATURAL JOIN RANG;
+
+CREATE VIEW PlanteRang
+AS SELECT * FROM 
+Plante NATURAL JOIN MiseEnPlace NATURAL JOIN VueRangCultive;
+
+CREATE VIEW JardinAugmente
+AS SELECT * FROM 
+Rang NATURAL JOIN Parcelle NATURAL JOIN Jardin;
+
+CREATE VIEW VueRang
+AS SELECT * FROM
+VueRangCultive NATURAL FULL JOIN VueRangJachere;
+
+CREATE VIEW PlanteVariete
+AS SELECT * FROM
+Variete NATURAL JOIN Plante;
+
+CREATE VIEW PlanteMenace
+AS SELECT * FROM
+Menace NATURAL JOIN SubirMenace NATURAL JOIN Plante;
 
 
 
