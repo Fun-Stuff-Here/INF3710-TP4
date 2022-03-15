@@ -40,12 +40,30 @@ CREATE TABLE Rang(
 	/*CONSTRAINT siJachereTropLong CHECK ((year(current_date) - year(DebutJachere))<1)*/
 );
 
+CREATE TABLE Variete(
+	VarieteId SERIAL,
+	Nom VARCHAR(20),
+	AnneeMiseEnMarche NUMERIC(4,0),
+	DescriptionPlantation TEXT,
+	DescriptionEntretien TEXT,
+	DescriptionSemis TEXT,
+	DescriptionRecolte TEXT,
+	PeriodeMisePlace TEXT,
+	PeriodeRecolte TEXT,
+	Commentaire TEXT,
+	SolsBiensAdaptes TEXT,/*On ne sait pas quel type de donne a lui donner a lui*/
+	PRIMARY KEY (VarieteId)
+);
+
+
 CREATE TABLE Plante(
 	NomLatin VARCHAR(20),
+	VarieteId SERIAL,
 	Categorie VARCHAR(20) NOT NULL,
 	Type VARCHAR(20) NOT NULL,
 	SousType VARCHAR(20),
-	PRIMARY KEY(NomLatin)
+	PRIMARY KEY(NomLatin),
+	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId)
 );
 
 CREATE TABLE Compagnonnage(
@@ -76,20 +94,7 @@ CREATE TABLE SubirMenace(
 
 
 
-CREATE TABLE Variete(
-	VarieteId SERIAL,
-	Nom VARCHAR(20),
-	AnneeMiseEnMarche NUMERIC(4,0),
-	DescriptionPlantation TEXT,
-	DescriptionEntretien TEXT,
-	DescriptionSemis TEXT,
-	DescriptionRecolte TEXT,
-	PeriodeMisePlace TEXT,
-	PeriodeRecolte TEXT,
-	Commentaire TEXT,
-	SolsBiensAdaptes TEXT,/*On ne sait pas quel type de donne a lui donner a lui*/
-	PRIMARY KEY (VarieteId)
-);
+
 
 CREATE TABLE Semencier(
 	nom VARCHAR(20),
