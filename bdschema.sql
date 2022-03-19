@@ -21,7 +21,7 @@ CREATE TABLE Parcelle (
 	XParcelle NUMERIC(6,0),
 	YParcelle NUMERIC(6,0),
 	Largeur NUMERIC(9,3),
-	Longeur NUMERIC(9,3),
+	Longueur NUMERIC(9,3),
 	PRIMARY KEY (JardinId, XParcelle, YParcelle),
 	FOREIGN KEY (JardinId) REFERENCES Jardin(JardinId) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT mesurePositive CHECK (Largeur>0 AND Longeur>0)
