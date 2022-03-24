@@ -101,7 +101,7 @@ CREATE TABLE MiseEnPlace(
 CREATE TABLE Compagnonnage(
 	Plante VARCHAR(20),
 	PlanteAccompagnee VARCHAR(20),
-	Benifice TEXT,
+	Benefice TEXT,
 	Inconvenient TEXT,
 	PRIMARY KEY (Plante, PlanteAccompagnee),
 	FOREIGN KEY (Plante) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -125,7 +125,7 @@ CREATE TABLE SubirMenace(
 );
 
 CREATE TABLE Semencier(
-	nom VARCHAR(20),
+	Nom VARCHAR(20),
 	SiteWeb TEXT, /*checker pour un type url*/
 	PRIMARY KEY (nom)
 );
