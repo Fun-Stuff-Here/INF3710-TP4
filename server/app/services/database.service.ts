@@ -6,11 +6,11 @@ import { DATABASE_CONFIG } from "../constants/database-config";
 @injectable()
 export class DatabaseService {
 
-  public connectionConfig = DATABASE_CONFIG;
-  public pool: pg.Pool = new pg.Pool(this.connectionConfig);
+
+  public pool: pg.Pool = new pg.Pool(DATABASE_CONFIG);
 
   
-    async test(){
+    test(){
       console.log("test");
 
       const query = `DROP SCHEMA IF EXISTS  "Jardin" CASCADE;
@@ -188,7 +188,7 @@ export class DatabaseService {
       
       `;
 
-      await this.pool.query(query, (err, res) => {
+      this.pool.query(query, (err, res) => {
         console.log(err, res);
       });
 
