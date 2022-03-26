@@ -10,6 +10,7 @@ export class Server {
   private readonly baseDix: number = 10;
   private server: http.Server;
 
+
   public constructor(@inject(Types.Application) private application: Application) {}
 
   public init(): void {

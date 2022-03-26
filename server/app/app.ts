@@ -19,7 +19,6 @@ export class Application {
   }
 
   private config(): void {
-    // Middlewares configuration
     this.app.use(logger("dev"));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,24 +27,18 @@ export class Application {
   }
 
   public bindRoutes(): void {
-    // Notre application utilise le routeur de notre API
     this.app.use("/database", this.databaseController.router);
-    this.errorHandeling();
+    this.errorHandling();
   }
 
-  private errorHandeling(): void {
-    // Gestion des erreurs
+  private errorHandling(): void {
     this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
       const err: Error = new Error("Not Found");
       (err as any).status = 404;
       next(err);
     });
 
-    // development error handler
-    // will print stacktrace
-    // if (this.app.get("env") === "development") {
-    // if(true){
-    // tslint:disable-next-line:no-any
+    
     this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
       res.status(err.status || this.internalError);
       res.send({
@@ -53,17 +46,6 @@ export class Application {
         error: err,
       });
     });
-    // }
-
-    // production error handler
-    // no stacktraces leaked to user (in production env only)
-    // tslint:disable-next-line:no-any
-    // this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-    //     res.status(err.status || this.internalError);
-    //     res.send({
-    //         message: err.message,
-    //         error: {},
-    //     });
-    // });
+   
   }
 }
