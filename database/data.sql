@@ -106,10 +106,11 @@ INSERT INTO Plante
 INSERT INTO MiseEnPlace
         (NomLatin, JardinId, XParcelle, YParcelle, NumeroRang, MiseEnPlace)
     VALUES
-        ('Solanum tuberosum', 1, 10000, 20000, 1, '??'),
-        ('Amelanchier canadensis', 2, 5000, 3200, 1, '??'),
-        ('Brassica oleracea italica', 1, 10000, 20000, 1, '??'),
-        ('Adiantum', 3, 4300, 8600, '??');
+        ('Solanum tuberosum', 1, 10000, 20000, 1, 'semis',TRUE),
+        ('Amelanchier canadensis', 2, 5000, 3200, 1, 'plant'),
+        ('Brassica oleracea italica', 1, 10000, 20000, 1, 'greffe',TRUE),
+        ('Adiantum', 3, 4300, 8600, 'transplanter',TRUE);
+
 
 INSERT INTO Compagnonnage
         (Plante, PlanteAccompagnee, Benefice, Inconvenient)

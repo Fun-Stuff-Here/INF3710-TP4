@@ -24,7 +24,7 @@ CREATE TABLE Parcelle (
 	Longueur NUMERIC(9,3),
 	PRIMARY KEY (JardinId, XParcelle, YParcelle),
 	FOREIGN KEY (JardinId) REFERENCES Jardin(JardinId) ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT mesurePositive CHECK (Largeur>0 AND Longeur>0)
+	CONSTRAINT mesurePositive CHECK (Largeur>0 AND Longueur>0)
 );
 
 CREATE TABLE Rang(
@@ -93,6 +93,7 @@ CREATE TABLE MiseEnPlace(
 	YParcelle NUMERIC(6,0),
 	NumeroRang SERIAL,
 	MiseEnPlace VARCHAR(20),
+	EstBiologique BOOLEAN DEFAULT FALSE,
 	PRIMARY KEY (NomLatin,JardinId, XParcelle,YParcelle,NumeroRang),
 	FOREIGN KEY (NomLatin) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (JardinId,XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId,XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE
