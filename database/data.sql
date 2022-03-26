@@ -29,7 +29,7 @@ INSERT INTO RangCultive
     VALUES
         (1, 10000, 20000, 1),
         (1, 10000, 20000, 3),
-        (2, 5000, 3200, 2);
+        (2, 5000, 3200, 1);
 
 INSERT INTO RangJachere
         (JardinId, XParcelle, YParcelle, NumeroRang, DebutJachere)
