@@ -2,6 +2,7 @@ import * as http from "http";
 import { inject, injectable } from "inversify";
 import { AddressInfo } from "net";
 import { Application } from "./app";
+import { DatabaseService } from "./services/database.service";
 import Types from "./types";
 
 @injectable()
@@ -21,6 +22,8 @@ export class Server {
     this.server.listen(this.appPort);
     this.server.on("error", (error: NodeJS.ErrnoException) => this.onError(error));
     this.server.on("listening", () => this.onListening());
+    const test = new DatabaseService();
+    test.test();
   }
 
   private normalizePort(val: number | string): number | string | boolean {
