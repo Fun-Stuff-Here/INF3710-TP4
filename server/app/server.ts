@@ -2,7 +2,6 @@ import * as http from "http";
 import { inject, injectable } from "inversify";
 import { AddressInfo } from "net";
 import { Application } from "./app";
-import { DatabaseService } from "./services/database.service";
 import Types from "./types";
 
 @injectable()
