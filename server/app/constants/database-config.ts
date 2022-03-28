@@ -7,3 +7,5 @@ export const DATABASE_CONFIG :ConnectionConfig = {
     host: "127.0.0.1",
     keepAlive: true
   };
+
+  export const SEARCH_PATH = `SET search_path = "Jardin";`;

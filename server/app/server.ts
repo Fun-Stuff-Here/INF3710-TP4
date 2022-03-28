@@ -22,8 +22,6 @@ export class Server {
     this.server.listen(this.appPort);
     this.server.on("error", (error: NodeJS.ErrnoException) => this.onError(error));
     this.server.on("listening", () => this.onListening());
-    const test = new DatabaseService();
-    test.test();
   }
 
   private normalizePort(val: number | string): number | string | boolean {
