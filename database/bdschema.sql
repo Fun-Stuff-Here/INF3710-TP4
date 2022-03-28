@@ -62,7 +62,7 @@ CREATE TABLE RangJachere(
 
 CREATE TABLE Variete(
 	VarieteId SERIAL,
-	NomVariete VARCHAR(20),
+	NomVariete VARCHAR(30),
 	AnneeMiseEnMarche NUMERIC(4,0),
 	DescriptionPlantation TEXT,
 	DescriptionEntretien TEXT,
@@ -77,7 +77,7 @@ CREATE TABLE Variete(
 
 
 CREATE TABLE Plante(
-	NomLatin VARCHAR(20),
+	NomLatin VARCHAR(30),
 	VarieteId SERIAL,
 	Categorie VARCHAR(20) NOT NULL,
 	Type VARCHAR(20) NOT NULL,
@@ -87,21 +87,21 @@ CREATE TABLE Plante(
 );
 
 CREATE TABLE MiseEnPlace(
-	NomLatin VARCHAR(20),
+	NomLatin VARCHAR(30),
 	JardinId VARCHAR(10),
 	XParcelle NUMERIC(6,0),
 	YParcelle NUMERIC(6,0),
 	NumeroRang SERIAL,
 	MiseEnPlace VARCHAR(20),
-	EstBiologique BOOLEAN DEFAULT FALSE,
+	estBiologique BOOLEAN DEFAULT FALSE,
 	PRIMARY KEY (NomLatin,JardinId, XParcelle,YParcelle,NumeroRang),
 	FOREIGN KEY (NomLatin) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY (JardinId,XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId,XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Compagnonnage(
-	Plante VARCHAR(20),
-	PlanteAccompagnee VARCHAR(20),
+	Plante VARCHAR(30),
+	PlanteAccompagnee VARCHAR(30),
 	Benefice TEXT,
 	Inconvenient TEXT,
 	PRIMARY KEY (Plante, PlanteAccompagnee),
@@ -118,7 +118,7 @@ CREATE TABLE Menace(
 );
 
 CREATE TABLE SubirMenace(
-	Plante VARCHAR(20),
+	Plante VARCHAR(30),
 	MenaceId SERIAL,
 	PRIMARY KEY (MenaceId,Plante),
 	FOREIGN KEY (Plante) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -165,9 +165,3 @@ Variete NATURAL JOIN Plante;
 CREATE VIEW PlanteMenace
 AS SELECT * FROM
 Menace NATURAL JOIN SubirMenace NATURAL JOIN Plante;
-
-
-
-
-
-
