@@ -11,6 +11,14 @@ export class DatabaseService {
   async getPlantsByName(name: string):Promise<Plant[][]> {
     return this.makeSelect<Plant>(`SELECT * FROM Plante WHERE NomLatin like '%${name}%';`);
   }
+
+  async getJardins(): Promise<pg.QueryResult> {
+	  const client = await this.pool.connect();
+	  let queryText = "SELECT Nom,JardinId,SurfaceJardin FROM Jardin;";
+	  const res = await client.query(queryText);
+	  client.release()
+	  return res;
+  }
   
   async query(query: string): Promise<void | pg.QueryArrayResult> {
     const idQuery: pg.QueryArrayConfig = {

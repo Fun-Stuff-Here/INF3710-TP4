@@ -1,1 +1,5 @@
-export interface Jardin{}
+export interface Jardin{
+	name: string;
+	id: string;
+	area: number;
+}

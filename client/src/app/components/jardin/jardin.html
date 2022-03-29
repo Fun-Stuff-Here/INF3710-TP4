@@ -1,0 +1,20 @@
+<div id="jardin">
+	<h1>Jardins</h1>
+  
+	<div class="divider"></div>
+  
+	<table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+	  <thead class="header">
+		<th class="contentCell">Nom</th>
+		<th class="contentCell">ID</th>
+		<th class="contentCell">Surface</th>
+	  </thead>
+	  <tbody>
+		<tr *ngFor="let jardin of jardins; let i = index">
+		  <td class="contentCell">{{ jardin.name }}</td>
+		  <td class="contentCell">{{ jardin.id}}</td>
+		  <td class="contentCell">{{ jardin.area }}</td>
+		</tr>
+	  </tbody>
+	</table>
+  </div>
