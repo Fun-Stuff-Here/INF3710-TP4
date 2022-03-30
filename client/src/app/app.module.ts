@@ -7,11 +7,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CommunicationService } from "./communication.service";
 import { JardinComponent } from "./components/jardin/jardin";
+import { VarieteComponent } from "./components/variete/variete";
 
 @NgModule({
   declarations: [
     AppComponent,
     JardinComponent,
+    VarieteComponent,
   ],
   imports: [
     CommonModule,

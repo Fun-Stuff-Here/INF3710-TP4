@@ -19,6 +19,22 @@ export class DatabaseService {
 	  client.release()
 	  return res;
   }
+
+  async getVarietes(): Promise<pg.QueryResult> {
+    const client = await this.pool.connect();
+	  let queryText = "SELECT * FROM Variete;";
+	  const res = await client.query(queryText);
+	  client.release()
+	  return res;
+  }
+
+  async deleteVariete(id: number): Promise<pg.QueryResult> {
+    const client = await this.pool.connect();
+	  let queryText = `DELETE FROM Variete WHERE VarieteId='${id}';`;
+	  const res = await client.query(queryText);
+	  client.release()
+	  return res;
+  }
   
   async query(query: string): Promise<void | pg.QueryArrayResult> {
     const idQuery: pg.QueryArrayConfig = {

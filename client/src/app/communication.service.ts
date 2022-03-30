@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { of, Observable, Subject } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Jardin } from "../../../common/tables/Jardin";
+import { Variete } from "../../../common/tables/Variete";
 
 @Injectable()
 export class CommunicationService {
@@ -22,6 +23,14 @@ export class CommunicationService {
 
 	public getJardins(): Observable<Jardin[]> {
 		return this.http.get<Jardin[]>(this.BASE_URL + "/jardins").pipe(catchError(this.handleError<Jardin[]>("getJardins")));
+	}
+
+	public getVarietes(): Observable<Variete[]> {
+		return this.http.get<Variete[]>(this.BASE_URL + "/varietes").pipe(catchError(this.handleError<Variete[]>("getVarietes")));
+	}
+
+	public deleteVariete(id: number): void {
+		this.http.delete(this.BASE_URL + "/varietes/" + id);
 	}
 
 	private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {

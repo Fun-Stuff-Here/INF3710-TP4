@@ -1,0 +1,22 @@
+<div id="variete">
+    <h1>Variétés</h1>
+
+    <div class="divider"></div>
+
+    <table id="ht" align="center" border="1" width="1000" class="table-striped table-hover">
+        <thead class="header">
+          <th class="contentCell">Nom</th>
+          <th class="contentCell">ID</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let variete of varietes; let i = index">
+                <td class="contentCell">{{ variete.name }}</td>
+                <td class="contentCell">
+                    {{ variete.id}}
+                    <button (click)="deleteVariete(variete.id)" class="deletebtn" id="rightdelete">Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
