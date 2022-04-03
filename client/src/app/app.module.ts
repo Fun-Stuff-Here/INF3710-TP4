@@ -8,12 +8,14 @@ import { AppComponent } from "./app.component";
 import { CommunicationService } from "./communication.service";
 import { JardinComponent } from "./components/jardin/jardin";
 import { VarieteComponent } from "./components/variete/variete";
+import { ModifyVarieteComponent } from "./components/modify-variete/modify-variete";
 
 @NgModule({
   declarations: [
     AppComponent,
     JardinComponent,
     VarieteComponent,
+    ModifyVarieteComponent,
   ],
   imports: [
     CommonModule,
