@@ -12,13 +12,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { JardinItemComponent } from "./components/jardin/jardin-item/jardin-item.component";
+import { ModifyVarieteComponent } from "./components/modify-variete/modify-variete";
 
 @NgModule({
   declarations: [
     AppComponent,
     JardinComponent,
     VarieteComponent,
-	JardinItemComponent
+	JardinItemComponent,
+    ModifyVarieteComponent,
   ],
   imports: [
     CommonModule,

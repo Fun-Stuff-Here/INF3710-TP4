@@ -8,6 +8,7 @@
 #ht {
     background-color: white;
     text-align: left;
+    float: left;
 }
 
 .divider {
@@ -42,18 +43,23 @@
 }
 
 .deletebtn {
+    margin-top: 25px;
     border-radius: 4px;
     color: white; 
-    background-color: #9A75F0; 
+    background-color: red; 
     border-style: none;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .submitbtn {
+    margin-top: 25px;
     border-radius: 4px;
+    color: white; 
+    background-color: green; 
     border-style: none;
+    margin-left: 10px;
     margin-right: 10px;
-    color: white;
-    background-color: #6E9EEB;
 }
 
 #rightdelete {
@@ -61,14 +67,10 @@
     margin-right: -7em;
 }
 
-#rightmodify {
+#info {
+    color: black;
+}
+
+.input {
     float: right;
-    margin-right: -12em;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 1px;
-    margin-bottom: 1px;
-    background-color: #9A75F0;
-    color: white;
-    font-size: 17px;
 }

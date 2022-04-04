@@ -15,6 +15,7 @@
                 <td class="contentCell">
                     {{ variete.id}}
                     <button (click)="deleteVariete(variete.id)" class="deletebtn" id="rightdelete">Supprimer</button>
+                    <button class="deletebtn" id="rightmodify" (click)="goToModify(variete.id)">Modifier</button>
                 </td>
             </tr>
         </tbody>

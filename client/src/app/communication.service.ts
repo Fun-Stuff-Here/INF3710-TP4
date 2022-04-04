@@ -29,6 +29,10 @@ export class CommunicationService {
 		return this.http.get<Variete[]>(this.BASE_URL + "/varietes").pipe(catchError(this.handleError<Variete[]>("getVarietes")));
 	}
 
+	public getVariete(id: number): Observable<Variete> {
+		return this.http.get<Variete>(this.BASE_URL + "/varietes/" + id).pipe(catchError(this.handleError<Variete>("getVariete")));
+	}
+
 	public deleteVariete(id: number): void {
 		this.http.delete(this.BASE_URL + "/varietes/" + id);
 	}

@@ -1,0 +1,18 @@
+<div id="variete">
+    <h1>Modifier une variété</h1>
+
+    <div class="divider"></div>
+
+    <table id="ht" align="center" border="1" width="100%" class="table-striped table-hover">
+        <tr *ngFor="let attribute of attributes; index as i" class="header">
+            <th class="contentCell">{{attribute}}</th>
+            <td class="contentCell" id="info">{{ values[i] }}
+                <input *ngIf="!isString(values[i])" [(ngModel)]="values[i]" type="number" class="input">
+                <input *ngIf="isString(values[i])" [(ngModel)]="values[i]" type="string" class="input">
+            </td>
+        </tr>
+        
+    </table>
+    <button (click)="submitVariete()" class="submitbtn" id="rightmodify">Soumettre</button>
+    <button (click)="resetDefaultValues()" class="deletebtn" id="rightmodify">Réinitialiser</button>
+</div>
