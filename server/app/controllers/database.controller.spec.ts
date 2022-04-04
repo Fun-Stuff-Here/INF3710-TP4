@@ -1,4 +1,3 @@
-/*
 import { StatusCodes } from 'http-status-codes';
 import * as supertest from 'supertest';
 import { Application } from '../app';
@@ -26,4 +25,3 @@ describe('DatabaseController', () => {
     });
 
 });
-*/
