@@ -3,6 +3,7 @@ import * as pg from "pg";
 import "reflect-metadata";
 import { DATABASE_CONFIG, SEARCH_PATH } from "../constants/database-config";
 import {Plant} from '../../../common/tables/Plant';
+import {Jardin} from '../../../common/tables/Jardin';
 
 @injectable()
 export class DatabaseService {
@@ -12,12 +13,8 @@ export class DatabaseService {
     return this.makeSelect<Plant>(`SELECT * FROM Plante WHERE NomLatin like '%${name}%';`);
   }
 
-  async getJardins(): Promise<pg.QueryResult> {
-	  const client = await this.pool.connect();
-	  let queryText = "SELECT Nom,JardinId,SurfaceJardin FROM Jardin;";
-	  const res = await client.query(queryText);
-	  client.release()
-	  return res;
+  async getJardins(): Promise<Jardin[][]> {
+	  return this.makeSelect<Jardin>("SELECT * FROM Jardin;");
   }
 
   async getVarietes(): Promise<pg.QueryResult> {

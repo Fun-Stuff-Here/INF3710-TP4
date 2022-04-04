@@ -8,21 +8,28 @@ import { AppComponent } from "./app.component";
 import { CommunicationService } from "./communication.service";
 import { JardinComponent } from "./components/jardin/jardin";
 import { VarieteComponent } from "./components/variete/variete";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { JardinItemComponent } from "./components/jardin/jardin-item/jardin-item.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     JardinComponent,
     VarieteComponent,
+	JardinItemComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+	BrowserAnimationsModule,
+	MatExpansionModule
   ],
-  providers: [CommunicationService],
+  providers: [CommunicationService, {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

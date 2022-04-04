@@ -24,4 +24,10 @@ describe('databaseService', () => {
         });
     });
 
+	it('should get all Jardin', () => {
+        service.getJardins().then(result => {
+            console.log('all jardins in db','response:',result);
+        });
+    });
+
 });

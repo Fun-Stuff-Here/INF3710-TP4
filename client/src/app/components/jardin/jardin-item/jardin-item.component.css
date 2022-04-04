@@ -1,0 +1,12 @@
+.contentCell {
+    padding-left: 24px;
+	padding-right: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-color: #e2e2e2;
+	background-color: #e2e2e2;
+}
+.mat-expansion-panel-header{
+	padding: 0;
+	max-height: 48px;
+}

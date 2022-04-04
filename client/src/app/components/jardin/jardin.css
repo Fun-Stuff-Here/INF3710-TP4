@@ -23,7 +23,10 @@
 }
 
 .contentCell {
-    padding: 10px;
+    padding-left: 24px;
+	padding-right: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
@@ -54,4 +57,8 @@
     margin-right: 10px;
     color: white;
     background-color: #6E9EEB;
+}
+
+.mat-accordion {
+	width: 100%;
 }
