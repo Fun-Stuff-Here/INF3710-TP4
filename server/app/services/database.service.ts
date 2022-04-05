@@ -4,6 +4,8 @@ import "reflect-metadata";
 import { DATABASE_CONFIG, SEARCH_PATH } from "../constants/database-config";
 import {Plant} from '../../../common/tables/Plant';
 import {Jardin} from '../../../common/tables/Jardin';
+import {Parcelle} from '../../../common/tables/Parcelle';
+import {Rang} from '../../../common/tables/Rang';
 
 @injectable()
 export class DatabaseService {
@@ -32,6 +34,31 @@ export class DatabaseService {
 		hauteurmaximal: jardin.hauteurmaximal,
 		ornementflag: jardin.ornementflag,
     }));
+  }
+
+  async getParcelles(jardinID: string):Promise<Parcelle[]> {
+    const result = await this.query(`SELECT * FROM Parcelle WHERE JardinId like '%${jardinID}%';`);
+    return result[1].rows.map((parcelle:Parcelle) => ({
+          jardinid:parcelle.jardinid,
+          xparcelle:parcelle.xparcelle,
+          yparcelle:parcelle.yparcelle,
+          largeur:parcelle.largeur,
+          longeur:parcelle.longeur,
+    }));
+  }
+
+  // pas fini ici!
+  async getRangs(jardinID:string, xparcelle:number, yparcelle:number):Promise<Rang[]> {
+    const result = await this.query(``);
+    /* return result[1].rows.map((rang:Rang) => ({
+          jardinid:rang.jardinid,
+          xparcelle:rang.xparcelle,
+          yparcelle:rang.yparcelle,
+		  numerorang: rang.numerorang,
+          xrang: rang.xrang,
+		  yrang: rang.yrang
+    })); */
+	return result[1];
   }
 
 

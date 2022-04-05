@@ -1,3 +1,7 @@
+.header {
+    font-size: 18px;
+    color: #9A75F0;
+}
 .contentCell {
     padding-left: 24px;
 	padding-right: 24px;
@@ -9,4 +13,20 @@
 .mat-expansion-panel-header{
 	padding: 0;
 	max-height: 48px;
+}
+.mat-expansion-panel-body{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+tr 
+{
+    width: 800;
+}
+
+#cssTable tr 
+{
+    text-align: left; 
+    vertical-align: middle;
+	background-color: white;
 }

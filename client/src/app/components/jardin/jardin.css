@@ -29,9 +29,6 @@
 	padding-bottom: 10px;
 }
 
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #9A75F033;
-}
 
 .btn {
     padding-left: 20px;

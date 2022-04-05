@@ -18,6 +18,16 @@ export class DatabaseController {
         .catch((e: Error) => console.error(e.stack))
     );
 
+	router.get("/parcelles/:jardinID", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getParcelles(req.params.jardinID).then(parcelles => {res.json(parcelles)})
+        .catch((e: Error) => console.error(e.stack))
+    );
+
+	router.get("/rangs", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getRangs(req.params.jardinID, req.params.xparcelle,req.params.yparcelle).then(rangs => {res.json(rangs)})
+        .catch((e: Error) => console.error(e.stack))
+    );
+
 	router.get("/varietes", (req: Request, res: Response, _: NextFunction) => {
 		this.databaseService.getVarietes().then((result: pg.QueryResult) => {
 			const varietes: Variete[] = result.rows.map((variete: Variete) => ({
