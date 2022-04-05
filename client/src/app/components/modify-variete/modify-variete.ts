@@ -13,6 +13,7 @@ export class ModifyVarieteComponent implements OnInit {
 	public variete: Variete;
     public id: number;
     public values: any[] = [];
+    public defaultValues: any[] = [];
 
     public attributes: string[] = [
         'Id',
@@ -33,14 +34,18 @@ export class ModifyVarieteComponent implements OnInit {
 
 	public ngOnInit(): void {
         this.id = +(this.route.snapshot.paramMap.get('id') as string);
-        console.log(this.id);
+        this.getVariete();
+	}
+
+    public getVariete(): void {
         this.httpManager.getVariete(this.id).subscribe((variete: Variete) => {
             this.variete = variete;
             for (const value of Object.values(this.variete)) {
                 this.values.push(value);
+                this.defaultValues.push(value);
             }
         });
-	}
+    }
 
     public deleteVariete(id: number): void {
         this.httpManager.deleteVariete(id);
@@ -66,5 +71,8 @@ export class ModifyVarieteComponent implements OnInit {
         this.variete.perioderecolte = this.values[8];
         this.variete.commentaire = this.values[9];
         this.variete.solsbiensadaptes = this.values[10];
+        this.httpManager.putVariete(this.id, this.variete).subscribe(() => {
+            this.getVariete();
+        });
     }
 }

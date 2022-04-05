@@ -37,6 +37,9 @@ export class HttpRequestManagerService {
     getVariete(varieteID: number): Observable<Variete> {
         return this.http.get<Variete>(`${GET_VARIETE_RUL}${varieteID}/`);
     }
+    putVariete(varieteID: number, variete: Variete): Observable<Variete> {
+        return this.http.put<Variete>(`${GET_VARIETE_RUL}${varieteID}/`, variete);
+    }
     // private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
 	// 	return (error: Error): Observable<T> => {return of(result as T);};
 	// }

@@ -113,6 +113,35 @@ export class DatabaseService {
       solsbiensadaptes: variete.solsbiensadaptes,
     }))[0];
   }
+
+  async updateVariete(id: number, newVariete: Variete): Promise<Variete> {
+	  const result = await this.query(`UPDATE Variete SET 
+      VarieteId = ${id},
+      NomVariete = '${newVariete.nomvariete}',
+      AnneeMiseEnMarche = '${newVariete.anneemiseenmarche}',
+      DescriptionPlantation = '${newVariete.descriptionplantation}',
+      DescriptionEntretien = '${newVariete.descriptionentretien}',
+      DescriptionSemis = '${newVariete.descriptionsemis}',
+      DescriptionRecolte = '${newVariete.descriptionrecolte}',
+      PeriodeMisePlace = '${newVariete.periodemiseplace}',
+      PeriodeRecolte = '${newVariete.perioderecolte}',
+      Commentaire = '${newVariete.commentaire}',
+      SolsBiensAdaptes = '${newVariete.solsbiensadaptes}'
+      WHERE VarieteId=${id};`);
+    return result[1].rows.map((variete: Variete) => ({
+      varieteid: variete.varieteid,
+      nomvariete: variete.nomvariete,
+      anneemiseenmarche: variete.anneemiseenmarche,
+      descriptionplantation: variete.descriptionplantation,
+      descriptionentretien: variete.descriptionentretien,
+      descriptionsemis: variete.descriptionsemis,
+      descriptionrecolte: variete.descriptionrecolte,
+      periodemiseplace: variete.periodemiseplace,
+      perioderecolte: variete.perioderecolte,
+      commentaire: variete.commentaire,
+      solsbiensadaptes: variete.solsbiensadaptes,
+    }))[0];
+  }
   
   async query(query: string): Promise<pg.QueryResult> {
     const client = await this.pool.connect();

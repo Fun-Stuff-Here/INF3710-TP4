@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
+import { Variete } from "../../../common/tables/Variete";
 import { DatabaseService } from "../services/database.service";
 import Types from "../types";
 
@@ -38,6 +39,24 @@ export class DatabaseController {
 
 	router.get("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
 		this.databaseService.getVariete(req.params.id).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
+	});
+
+	router.put("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
+		const newVariete: Variete = {
+			varieteid: req.body.varieteid,
+			nomvariete: req.body.nomvariete,
+			anneemiseenmarche: req.body.anneemiseenmarche,
+			descriptionplantation: req.body.descriptionplantation,
+			descriptionentretien: req.body.descriptionentretien,
+			descriptionsemis: req.body.descriptionsemis,
+			descriptionrecolte: req.body.descriptionrecolte,
+			periodemiseplace: req.body.periodemiseplace,
+			perioderecolte: req.body.perioderecolte,
+			commentaire: req.body.commentaire,
+			solsbiensadaptes: req.body.solsbiensadaptes,
+		}
+		this.databaseService.updateVariete(req.params.id, newVariete).then(variete => {res.json(variete)})
         .catch((e: Error) => console.error(e.stack))
 	});
 

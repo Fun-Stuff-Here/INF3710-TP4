@@ -6,8 +6,7 @@
     <table id="ht" align="center" border="1" width="100%" class="table-striped table-hover">
         <tr *ngFor="let attribute of attributes; index as i" class="header">
             <th class="contentCell">{{attribute}}</th>
-            <td class="contentCell" id="info">{{ values[i] }}
-                <input *ngIf="!isString(values[i])" [(ngModel)]="values[i]" type="number" class="input">
+            <td class="contentCell" id="info">{{ defaultValues[i] }}
                 <input *ngIf="isString(values[i])" [(ngModel)]="values[i]" type="string" class="input">
             </td>
         </tr>
