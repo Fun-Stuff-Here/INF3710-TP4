@@ -6,6 +6,7 @@ import {Plant} from '../../../common/tables/Plant';
 import {Jardin} from '../../../common/tables/Jardin';
 import {Parcelle} from '../../../common/tables/Parcelle';
 import {Rang} from '../../../common/tables/Rang';
+import { Variete } from '../../../common/tables/Variete';
 
 @injectable()
 export class DatabaseService {
@@ -62,8 +63,22 @@ export class DatabaseService {
   }
 
 
-  async getVarietes(): Promise<pg.QueryResult> {
-    return this.query("SELECT * FROM Variete;");
+  async getVarietes(): Promise<Variete[]> {
+    const result = await this.query(`SELECT * FROM Variete;`);
+    console.log(result[1].rows);
+    return result[1].rows.map((variete: Variete) => ({
+      VarieteId: variete.id,
+      NomVariete: variete.name,
+      AnneeMiseEnMarche: variete.yearMarket,
+      DescriptionPlantation: variete.plantingDescription,
+      DescriptionEntretien: variete.maintenanceDescription,
+      DescriptionSemis: variete.seedingDescription,
+      DescriptionRecolte: variete.harvestDescription,
+      PeriodeMisePlace: variete.plantingPeriod,
+      PeriodeRecolte: variete.harvestPeriod,
+      Commentaire: variete.comment,
+      SolsBiensAdaptes: variete.goodSoils,
+    }));
   }
 
   async deleteVariete(id: number): Promise<pg.QueryResult> {
