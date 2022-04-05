@@ -3,5 +3,5 @@ export interface Parcelle{
 	xparcelle: number;
 	yparcelle: number;
 	largeur: number;
-	longeur: number;
+	longueur: number;
 }

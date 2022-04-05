@@ -43,7 +43,7 @@ export class DatabaseService {
           xparcelle:parcelle.xparcelle,
           yparcelle:parcelle.yparcelle,
           largeur:parcelle.largeur,
-          longeur:parcelle.longeur,
+          longueur:parcelle.longueur,
     }));
   }
 

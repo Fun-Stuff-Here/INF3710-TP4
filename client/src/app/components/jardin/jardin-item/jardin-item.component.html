@@ -1,24 +1,23 @@
-<mat-expansion-panel hideToggle="true" (opened)="showInfo(item.jardinid)">
+<mat-expansion-panel hideToggle="true" (opened)="showInfo(item.jardinid)" >
 	<mat-expansion-panel-header>
-		<tr>
-			<td class="contentCell" width="400">{{ item.nom }}</td>
-			<td class="contentCell" width="250">{{ item.jardinid}}</td>
-			<td class="contentCell" width="150">{{ item.surfacejardin }}</td>
-		</tr>
-	</mat-expansion-panel-header>
-	<table id="cssTable" align="center" border="1">
-		<thead class="header">
-			
-		  	<th class="contentCell" width="400">Position parcelle</th>
-		  	<th class="contentCell" width="250">Largeur</th>
-		  	<th class="contentCell" width="150">Longueur</th>
-		</thead>
-		<tbody>
-			<tr *ngFor="let parcelle of parcelles; let i = index">
-				<td class="contentCell">({{ parcelle.xparcelle }}, {{ parcelle.yparcelle }})</td>
-				<td class="contentCell">{{ parcelle.largeur }}</td>
-				<td class="contentCell">{{ parcelle.longueur }}</td>
+		<table width="100%" class="items">
+			<tr class="item">
+				<td class="contentCell" width="45%">{{ item.nom }}</td>
+				<td class="contentCell" width="30%">{{ item.jardinid}}</td>
+				<td class="contentCell" width="25%">{{ item.surfacejardin }}</td>
 			</tr>
-		</tbody>
-	  </table>
+		</table>
+	</mat-expansion-panel-header>
+	<table align="center" border="1" width="100%">
+		<tr>
+		  	<th>Position parcelle</th>
+		  	<th>Largeur</th>
+		  	<th>Longueur</th>
+		</tr>
+		<tr *ngFor="let parcelle of parcelles; let i = index">
+			<td>({{ parcelle.xparcelle }}, {{ parcelle.yparcelle }})</td>
+			<td>{{ parcelle.largeur }}</td>
+			<td>{{ parcelle.longueur }}</td>
+		</tr>
+	</table>
 </mat-expansion-panel>

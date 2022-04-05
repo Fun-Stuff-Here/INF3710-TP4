@@ -5,28 +5,20 @@
 .contentCell {
     padding-left: 24px;
 	padding-right: 24px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-color: #e2e2e2;
-	background-color: #e2e2e2;
+	padding-top: 12px;
+	padding-bottom: 12px;
 }
-.mat-expansion-panel-header{
-	padding: 0;
-	max-height: 48px;
+.mat-expansion-panel-header:hover{
+	color: #9A75F0;
 }
-.mat-expansion-panel-body{
-	padding-left: 0px;
-	padding-right: 0px;
+.mat-expansion-panel-header {
+    padding: 0;
 }
-
-tr 
-{
-    width: 800;
+.mat-expansion-panel{
+	display: unset;
 }
-
-#cssTable tr 
-{
-    text-align: left; 
-    vertical-align: middle;
+.items{
+	border:none;
 	background-color: white;
 }
+
