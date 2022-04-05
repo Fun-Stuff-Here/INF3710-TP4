@@ -32,9 +32,13 @@ export class DatabaseController {
     );
 
 	router.delete("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.deleteVariete(req.params.id).then().catch((e: Error) => {
-			console.error(e.stack);
-		})
+		this.databaseService.deleteVariete(req.params.id).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
+	});
+
+	router.get("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
+		this.databaseService.getVariete(req.params.id).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
 	});
 
     router.get("/plant/:name", (req: Request, res: Response, _: NextFunction) => 

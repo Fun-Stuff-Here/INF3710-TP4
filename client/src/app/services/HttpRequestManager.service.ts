@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { GET_PLANT_RUL, GET_JARDIN_RUL, GET_PARCELLE_RUL, GET_RANG_RUL, GET_VARIETE_RUL, DELETE_VARIETE_RUL } from '../constants/http-url';
+import { Observable } from 'rxjs';
+import { GET_PLANT_RUL, GET_JARDIN_RUL, GET_PARCELLE_RUL, GET_RANG_RUL, GET_VARIETE_RUL } from '../constants/http-url';
 import {Plant} from '../../../../common/tables/Plant';
 import {Jardin} from '../../../../common/tables/Jardin';
 import {Parcelle} from '../../../../common/tables/Parcelle';
 import {Rang} from '../../../../common/tables/Rang';
 import { Variete } from '../../../../common/tables/Variete';
-import { catchError } from 'rxjs/operators';
+// import { catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -28,12 +28,16 @@ export class HttpRequestManagerService {
         return this.http.get<Rang[]>(`${GET_RANG_RUL}`);
     }
     getVarietes(): Observable<Variete[]> {
-        return this.http.get<Variete[]>(`${GET_VARIETE_RUL}`).pipe(catchError(this.handleError<Variete[]>("getVarietes")));
+        return this.http.get<Variete[]>(`${GET_VARIETE_RUL}`);
     }
-    deleteVariete(varieteID: number): Observable<Variete> {
-        return this.http.delete<Variete>(`${DELETE_VARIETE_RUL}${varieteID}`);
+    deleteVariete(varieteID: number): Observable<Variete[]> {
+        console.log(varieteID);
+        return this.http.delete<Variete[]>(`${GET_VARIETE_RUL}${varieteID}/`);
     }
-    private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
-		return (error: Error): Observable<T> => {return of(result as T);};
-	}
+    getVariete(varieteID: number): Observable<Variete> {
+        return this.http.get<Variete>(`${GET_VARIETE_RUL}${varieteID}/`);
+    }
+    // private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
+	// 	return (error: Error): Observable<T> => {return of(result as T);};
+	// }
 }

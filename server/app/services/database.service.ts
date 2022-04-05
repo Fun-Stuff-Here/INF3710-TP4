@@ -65,28 +65,53 @@ export class DatabaseService {
 
   async getVarietes(): Promise<Variete[]> {
     const result = await this.query(`SELECT * FROM Variete;`);
-    console.log(result[1].rows);
     return result[1].rows.map((variete: Variete) => ({
-      VarieteId: variete.id,
-      NomVariete: variete.name,
-      AnneeMiseEnMarche: variete.yearMarket,
-      DescriptionPlantation: variete.plantingDescription,
-      DescriptionEntretien: variete.maintenanceDescription,
-      DescriptionSemis: variete.seedingDescription,
-      DescriptionRecolte: variete.harvestDescription,
-      PeriodeMisePlace: variete.plantingPeriod,
-      PeriodeRecolte: variete.harvestPeriod,
-      Commentaire: variete.comment,
-      SolsBiensAdaptes: variete.goodSoils,
+      varieteid: variete.varieteid,
+      nomvariete: variete.nomvariete,
+      anneemiseenmarche: variete.anneemiseenmarche,
+      descriptionplantation: variete.descriptionplantation,
+      descriptionentretien: variete.descriptionentretien,
+      descriptionsemis: variete.descriptionsemis,
+      descriptionrecolte: variete.descriptionrecolte,
+      periodemiseplace: variete.periodemiseplace,
+      perioderecolte: variete.perioderecolte,
+      commentaire: variete.commentaire,
+      solsbiensadaptes: variete.solsbiensadaptes,
     }));
   }
 
-  async deleteVariete(id: number): Promise<pg.QueryResult> {
-    const client = await this.pool.connect();
-	  let queryText = `DELETE FROM Variete WHERE VarieteId='${id}';`;
-	  const res = await client.query(queryText);
-	  client.release()
-	  return res;
+  async deleteVariete(id: number): Promise<Variete[]> {
+	  const result = await this.query(`DELETE FROM Variete WHERE VarieteId=${id};`);
+    return result[1].rows.map((variete: Variete) => ({
+      varieteid: variete.varieteid,
+      nomvariete: variete.nomvariete,
+      anneemiseenmarche: variete.anneemiseenmarche,
+      descriptionplantation: variete.descriptionplantation,
+      descriptionentretien: variete.descriptionentretien,
+      descriptionsemis: variete.descriptionsemis,
+      descriptionrecolte: variete.descriptionrecolte,
+      periodemiseplace: variete.periodemiseplace,
+      perioderecolte: variete.perioderecolte,
+      commentaire: variete.commentaire,
+      solsbiensadaptes: variete.solsbiensadaptes,
+    }));
+  }
+
+  async getVariete(id: number): Promise<Variete> {
+	  const result = await this.query(`SELECT * FROM Variete WHERE VarieteId=${id};`);
+    return result[1].rows.map((variete: Variete) => ({
+      varieteid: variete.varieteid,
+      nomvariete: variete.nomvariete,
+      anneemiseenmarche: variete.anneemiseenmarche,
+      descriptionplantation: variete.descriptionplantation,
+      descriptionentretien: variete.descriptionentretien,
+      descriptionsemis: variete.descriptionsemis,
+      descriptionrecolte: variete.descriptionrecolte,
+      periodemiseplace: variete.periodemiseplace,
+      perioderecolte: variete.perioderecolte,
+      commentaire: variete.commentaire,
+      solsbiensadaptes: variete.solsbiensadaptes,
+    }))[0];
   }
   
   async query(query: string): Promise<pg.QueryResult> {

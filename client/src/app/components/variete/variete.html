@@ -11,11 +11,11 @@
 
         <tbody>
             <tr *ngFor="let variete of varietes">
-                <td class="contentCell">{{ variete.name }}</td>
+                <td class="contentCell">{{ variete.nomvariete }}</td>
                 <td class="contentCell">
-                    {{ variete.id}}
-                    <button (click)="deleteVariete(variete.id)" class="deletebtn" id="rightdelete">Supprimer</button>
-                    <button class="deletebtn" id="rightmodify" (click)="goToModify(variete.id)">Modifier</button>
+                    {{ variete.varieteid}}
+                    <button (click)="deleteVariete(variete.varieteid)" class="deletebtn" id="rightdelete">Supprimer</button>
+                    <button class="deletebtn" id="rightmodify" (click)="goToModify(variete.varieteid)">Modifier</button>
                 </td>
             </tr>
         </tbody>
