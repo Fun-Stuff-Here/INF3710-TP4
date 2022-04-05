@@ -48,7 +48,7 @@ export class DatabaseController {
 	});
 
     router.get("/plant/:name", (req: Request, res: Response, _: NextFunction) => 
-      this.databaseService.getPlantsByName(req.params.name).then(plants => res.json(plants))
+      this.databaseService.getPlantsByName(req.params.name).then(plants => {res.json(plants)})
         .catch((e: Error) => console.error(e.stack))
     );
     return router;

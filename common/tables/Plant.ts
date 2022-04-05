@@ -1,7 +1,7 @@
 export interface Plant{
-    nameLatin: string;
-    varietyId: number;
-    category: string;
+    nomlatin: string;
+    varieteid: number;
+    categorie: string;
     type: string;
-    subType: string;
+    soustype: string;
 }
