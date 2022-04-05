@@ -20,21 +20,19 @@ export class DatabaseService {
     }));
   }
 
-  async getJardins(): Promise<Jardin[]> {
-    const result = await this.query("SELECT * FROM Jardin;");
+  async getJardins():Promise<Jardin[]> {
+    const result = await this.query(`SELECT * FROM Jardin;`);
     return result[1].rows.map((jardin:Jardin) => ({
-        id:jardin.id,
-        area:jardin.area,
-        maxHeight:jardin.maxHeight,
-        name:jardin.name,
-        ornement:jardin.ornement,
-        potager:jardin.potager,
-        typeSol:jardin.typeSol,
-        verger:jardin.verger
+		jardinid: jardin.jardinid,
+		nom: jardin.nom,
+		surfacejardin: jardin.surfacejardin,
+		potagerflag: jardin.potagerflag,
+		typeSol: jardin.typeSol,
+		vergerflag: jardin.vergerflag,
+		hauteurmaximal: jardin.hauteurmaximal,
+		ornementflag: jardin.ornementflag,
     }));
-	  
   }
-
 
 
   async getVarietes(): Promise<pg.QueryResult> {

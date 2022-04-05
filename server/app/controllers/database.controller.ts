@@ -13,11 +13,10 @@ export class DatabaseController {
 	
   public get router(): Router {
     const router: Router = Router();
-	router.get("/jardins", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.getJardins().then(jardins => res.json(jardins)).catch((e: Error) => {
-			console.error(e.stack);
-		})
-	});
+	router.get("/jardins", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getJardins().then(jardins => {res.json(jardins)})
+        .catch((e: Error) => console.error(e.stack))
+    );
 
 	router.get("/varietes", (req: Request, res: Response, _: NextFunction) => {
 		this.databaseService.getVarietes().then((result: pg.QueryResult) => {
