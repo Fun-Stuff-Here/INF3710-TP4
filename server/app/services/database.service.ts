@@ -116,9 +116,8 @@ export class DatabaseService {
 
   async updateVariete(id: number, newVariete: Variete): Promise<Variete> {
 	  const result = await this.query(`UPDATE Variete SET 
-      VarieteId = ${id},
       NomVariete = '${newVariete.nomvariete}',
-      AnneeMiseEnMarche = '${newVariete.anneemiseenmarche}',
+      AnneeMiseEnMarche = ${newVariete.anneemiseenmarche},
       DescriptionPlantation = '${newVariete.descriptionplantation}',
       DescriptionEntretien = '${newVariete.descriptionentretien}',
       DescriptionSemis = '${newVariete.descriptionsemis}',

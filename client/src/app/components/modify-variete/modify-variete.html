@@ -7,7 +7,10 @@
         <tr *ngFor="let attribute of attributes; index as i" class="header">
             <th class="contentCell">{{attribute}}</th>
             <td class="contentCell" id="info">{{ defaultValues[i] }}
-                <input *ngIf="isString(values[i])" [(ngModel)]="values[i]" type="string" class="input">
+                <input *ngIf="isYear(i)" [(ngModel)]="values[i]" type="number" class="input-number" max="2022" min="0">
+                <p *ngIf="!yearIsGood && isYear(i)" style="color: red; float: right; margin-right: 5px;">Entrez une année entre 0 et 2022</p>
+                <input *ngIf="isString(values[i]) && !isName(i) && !isYear(i)" [(ngModel)]="values[i]" type="string" class="input">
+                <input *ngIf="isString(values[i]) && isName(i)" [(ngModel)]="values[i]" type="string" class="input" maxlength="30">
             </td>
         </tr>
         

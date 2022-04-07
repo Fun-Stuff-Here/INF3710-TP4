@@ -14,6 +14,7 @@ export class ModifyVarieteComponent implements OnInit {
     public id: number;
     public values: any[] = [];
     public defaultValues: any[] = [];
+    public yearIsGood = true;
 
     public attributes: string[] = [
         'Id',
@@ -40,6 +41,8 @@ export class ModifyVarieteComponent implements OnInit {
     public getVariete(): void {
         this.httpManager.getVariete(this.id).subscribe((variete: Variete) => {
             this.variete = variete;
+            this.values = [];
+            this.defaultValues = [];
             for (const value of Object.values(this.variete)) {
                 this.values.push(value);
                 this.defaultValues.push(value);
@@ -55,11 +58,23 @@ export class ModifyVarieteComponent implements OnInit {
         return typeof(val) === 'string';
     }
 
+    public isYear(index: number): boolean {
+        return this.attributes[index] === 'Année de mise en marché';
+    }
+
+    public isName(index: number): boolean {
+        return this.attributes[index] === 'Nom';
+    }
+
     public resetDefaultValues(): void {
         this.values = Object.values(this.variete);
     }
 
     public submitVariete(): void {
+        if (this.values[2] < 0 || this.values[2] > 2022) {
+            this.yearIsGood = false;
+        } else {
+        this.yearIsGood = true;
         this.variete.varieteid = this.values[0];
         this.variete.nomvariete = this.values[1];
         this.variete.anneemiseenmarche = this.values[2];
@@ -74,5 +89,6 @@ export class ModifyVarieteComponent implements OnInit {
         this.httpManager.putVariete(this.id, this.variete).subscribe(() => {
             this.getVariete();
         });
+        }
     }
 }
