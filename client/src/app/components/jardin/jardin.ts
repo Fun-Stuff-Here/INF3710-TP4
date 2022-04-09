@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Jardin } from "../../../../../common/tables/Jardin";
-import { Rang } from "../../../../../common/tables/Rang";
 import { HttpRequestManagerService } from "src/app/services/HttpRequestManager.service";
 
 @Component({
@@ -10,7 +9,6 @@ import { HttpRequestManagerService } from "src/app/services/HttpRequestManager.s
 })
 export class JardinComponent implements OnInit {
 	public jardins: Jardin[] = [];
-	public rang: Rang[] = [];
 
 	constructor(private readonly httpManager:HttpRequestManagerService){}
 

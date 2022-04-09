@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Parcelle } from "../../../../../../common/tables/Parcelle";
 import { HttpRequestManagerService } from "src/app/services/HttpRequestManager.service";
-import { Rang } from '../../../../../../common/tables/Rang';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-jardin-item',
   templateUrl: './jardin-item.component.html',
@@ -9,9 +9,8 @@ import { Rang } from '../../../../../../common/tables/Rang';
 })
 export class JardinItemComponent implements OnInit {
 	public parcelles: Parcelle[] = [];
-	public rangs: Rang[] = [];
 	@Input() item: any;
-	constructor(private readonly httpManager:HttpRequestManagerService){}
+	constructor(private readonly httpManager:HttpRequestManagerService, private router: Router){}
 	
 	ngOnInit() {
 	}
@@ -22,20 +21,11 @@ export class JardinItemComponent implements OnInit {
 		});
 	}
 
-	private getRangs(jardinID:string): void {
-		this.httpManager.getRangs(jardinID).subscribe((receivedRangs:Rang[])=>{
-		  this.rangs = receivedRangs;
-	  });
-  	}
-
 	showInfo(jardinID:string) {
 		this.getParcelles(jardinID);
 	}
-	
-	showRang(parcelle: Parcelle){
-		this.getRangs(parcelle.jardinid);
-		this.rangs.filter(function(rang) {
-			return rang.xparcelle == parcelle.xparcelle && rang.yparcelle == parcelle.yparcelle;
-		});
-	}
+
+	goToRang(parcelle: Parcelle): void {
+        this.router.navigate(['/rang/' + parcelle.jardinid + '/' + parcelle.xparcelle + '/' + parcelle.yparcelle]);
+    }
 }

@@ -1,7 +1,7 @@
 <mat-expansion-panel hideToggle="true" (opened)="showInfo(item.jardinid)" >
 	<mat-expansion-panel-header>
 		<table width="100%" class="items">
-			<tr class="item">
+			<tr>
 				<td class="contentCell" width="45%">{{ item.nom }}</td>
 				<td class="contentCell" width="30%">{{ item.jardinid}}</td>
 				<td class="contentCell" width="25%">{{ item.surfacejardin }}</td>
@@ -14,14 +14,10 @@
 		  	<th>Largeur</th>
 		  	<th>Longueur</th>
 		</tr>
-		<tr  id="parcelle" *ngFor="let parcelle of parcelles; let i = index" (click)="showRang(parcelle)">
+		<tr  id="parcelle" *ngFor="let parcelle of parcelles; let i = index" (click)="goToRang(parcelle)">
 			<td>({{ parcelle.xparcelle }}, {{ parcelle.yparcelle }})</td>
 			<td>{{ parcelle.largeur }}</td>
 			<td>{{ parcelle.longueur }}</td>
 		</tr>
-		<!-- <tr *ngFor="let rang of rangs; let i = index" (click)="showVariete()">
-			<td>{{ rang.numerorang }}</td>
-			<td>{{ rang.xrang }}, {{ rang.yrang }}</td>
-		</tr> -->
 	</table>
 </mat-expansion-panel>

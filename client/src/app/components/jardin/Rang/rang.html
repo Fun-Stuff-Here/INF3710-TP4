@@ -1,0 +1,16 @@
+<div id="rangList">
+    <h1>Liste des rangs de la parcelle ({{xparcelle}}, {{yparcelle}})</h1>
+
+    <div class="divider"></div>
+
+    <table id="ht" align="center" border="1" width="800">
+		<tr class="header">
+		  <th class="contentCell" width="50%">Numéro du rang</th>
+		  <th class="contentCell" width="50%">Position</th>
+		</tr>
+		<tr id="item" *ngFor="let rang of rangs; let i = index">
+			<td class="contentCell">{{ rang.numerorang }}</td>
+			<td class="contentCell">({{ rang.xrang }},{{ rang.yrang }})</td>
+		</tr>
+	  </table>
+</div>

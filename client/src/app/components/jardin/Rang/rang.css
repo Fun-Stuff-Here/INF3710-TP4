@@ -1,0 +1,30 @@
+#rangList {
+    background-color: #e2e2e2;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 3%;
+}
+#item:hover {
+	color: #9A75F0;
+}
+
+#ht {
+    background-color: white;
+    text-align: left;
+}
+
+.divider {
+    border-bottom: 1px solid #9A75F0;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 25px;
+}
+
+.header {
+    font-size: 18px;
+    color: #9A75F0;
+}
+
+.contentCell {
+    padding: 10px;
+}

@@ -14,15 +14,17 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { JardinItemComponent } from "./components/jardin/jardin-item/jardin-item.component";
 import { ModifyVarieteComponent } from "./components/modify-variete/modify-variete";
 import { PlanteComponent } from "./components/plante/plante";
+import { RangComponent } from "./components/jardin/Rang/rang";
 
 @NgModule({
   declarations: [
     AppComponent,
     JardinComponent,
     VarieteComponent,
-	  JardinItemComponent,
+	JardinItemComponent,
     ModifyVarieteComponent,
     PlanteComponent,
+	RangComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,7 @@ import { PlanteComponent } from "./components/plante/plante";
     AppRoutingModule,
 	BrowserAnimationsModule,
 	MatExpansionModule,
-  ReactiveFormsModule,
+  	ReactiveFormsModule
   ],
   providers: [CommunicationService, {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent],
