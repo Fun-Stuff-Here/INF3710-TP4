@@ -48,6 +48,23 @@ export class DatabaseService {
     }));
   }
 
+  async getVarietesOfRang(jardinID: string):Promise<Variete[]> {
+    const result = await this.query(`SELECT * FROM Variete;`);
+    return result[1].rows.map((variete: Variete) => ({
+      varieteid: variete.varieteid,
+      nomvariete: variete.nomvariete,
+      anneemiseenmarche: variete.anneemiseenmarche,
+      descriptionplantation: variete.descriptionplantation,
+      descriptionentretien: variete.descriptionentretien,
+      descriptionsemis: variete.descriptionsemis,
+      descriptionrecolte: variete.descriptionrecolte,
+      periodemiseplace: variete.periodemiseplace,
+      perioderecolte: variete.perioderecolte,
+      commentaire: variete.commentaire,
+      solsbiensadaptes: variete.solsbiensadaptes,
+    }));
+  }
+
 
   async getRangs(jardinID:string):Promise<Rang[]> {
 	const result = await this.query(`SELECT * FROM Rang WHERE JardinId like '%${jardinID}%';`);

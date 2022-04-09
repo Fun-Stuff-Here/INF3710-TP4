@@ -27,6 +27,11 @@ export class DatabaseController {
         .catch((e: Error) => console.error(e.stack))
     );
 
+	router.get("/rangs/varietes/:jardinID", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getVarietesOfRang(req.params.jardinID).then(varietes => {res.json(varietes)})
+        .catch((e: Error) => console.error(e.stack))
+    );
+
 	router.get("/varietes", (req: Request, res: Response, _: NextFunction) => 
       this.databaseService.getVarietes().then(varietes => {res.json(varietes)})
         .catch((e: Error) => console.error(e.stack))
