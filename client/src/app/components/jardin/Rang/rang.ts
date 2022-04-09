@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { HttpRequestManagerService } from "src/app/services/HttpRequestManager.service";
 import { Rang } from "../../../../../../common/tables/Rang";
 
@@ -9,12 +9,16 @@ import { Rang } from "../../../../../../common/tables/Rang";
   styleUrls: ["./rang.css"],
 })
 export class RangComponent implements OnInit {
-	public rangs: Rang[] = [];
-	public jardinID: string;
-	public xparcelle: Number;
-	public yparcelle: Number;
+	rangs: Rang[] = [];
+	jardinID: string;
+	xparcelle: Number;
+	yparcelle: Number;
 	
-	constructor(private readonly httpManager:HttpRequestManagerService, private route: ActivatedRoute){}
+	constructor(
+		private readonly httpManager:HttpRequestManagerService, 
+		private route: ActivatedRoute,
+		private router: Router
+	){}
 
 	ngOnInit(): void {
 		this.jardinID = (this.route.snapshot.paramMap.get('jardinID') as string);
@@ -31,5 +35,13 @@ export class RangComponent implements OnInit {
 		});
 	  });
   	}
+	
+	goBack(){
+		this.router.navigate(['/jardin']);
+	}
+
+	goToVariete(rang: Rang): void {
+        this.router.navigate(['/rang/varietes/' + rang.jardinid + '/' + rang.numerorang + '/' + rang.xrang + '/' + rang.yrang + '/' + rang.xparcelle + '/' + rang.yparcelle]);
+    }
 
 }

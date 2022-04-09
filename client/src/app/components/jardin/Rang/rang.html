@@ -8,9 +8,11 @@
 		  <th class="contentCell" width="50%">Numéro du rang</th>
 		  <th class="contentCell" width="50%">Position</th>
 		</tr>
-		<tr id="item" *ngFor="let rang of rangs; let i = index">
+		<tr id="item" *ngFor="let rang of rangs; let i = index" (click)="goToVariete(rang)">
 			<td class="contentCell">{{ rang.numerorang }}</td>
 			<td class="contentCell">({{ rang.xrang }},{{ rang.yrang }})</td>
 		</tr>
 	  </table>
+	  <hr color="white">
+	  <button (click)="goBack()" class="back">Retour</button>
 </div>

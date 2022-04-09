@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GET_PLANT_RUL, GET_JARDIN_RUL, GET_PARCELLE_RUL, GET_RANG_RUL, GET_VARIETE_RUL } from '../constants/http-url';
+import { GET_PLANT_RUL, GET_JARDIN_RUL, GET_PARCELLE_RUL, GET_RANG_RUL, GET_VARIETE_RUL, GET_RANG_VARIETE_RUL } from '../constants/http-url';
 import {Plant} from '../../../../common/tables/Plant';
 import {Jardin} from '../../../../common/tables/Jardin';
 import {Parcelle} from '../../../../common/tables/Parcelle';
@@ -26,6 +26,9 @@ export class HttpRequestManagerService {
     }
 	getRangs(jardinID:string): Observable<Rang[]> {
         return this.http.get<Rang[]>(`${GET_RANG_RUL}${jardinID}`);
+    }
+	getVarietesOfRang(jardinID:string, xrang:Number, yrang:Number, numeroRang: Number): Observable<Variete[]> {
+        return this.http.get<Variete[]>(`${GET_RANG_VARIETE_RUL}${jardinID}`);
     }
     getVarietes(): Observable<Variete[]> {
         return this.http.get<Variete[]>(`${GET_VARIETE_RUL}`);

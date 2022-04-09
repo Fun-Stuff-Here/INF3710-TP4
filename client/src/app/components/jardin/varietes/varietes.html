@@ -1,0 +1,16 @@
+<div id="varieteList">
+    <h1>Liste des variétés dans le rang {{ numeroRang }}</h1>
+
+    <div class="divider"></div>
+
+    <table id="ht" align="center" border="1" width="400">
+		<tr class="header">
+			<th class="contentCell" width="50%">Variétés</th>
+		</tr>
+		<tr *ngFor="let variete of varietes">
+			<td class="contentCell">{{ variete.nomvariete }}</td>
+		</tr>
+	  </table>
+	  <hr color="white">
+	  <button (click)="goBack()" class="back">Retour</button>
+</div>

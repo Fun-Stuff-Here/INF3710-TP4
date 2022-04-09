@@ -1,11 +1,8 @@
-#rangList {
+#varieteList {
     background-color: #e2e2e2;
     font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 3%;
-}
-#item:hover {
-	color: #9A75F0;
 }
 
 #ht {
