@@ -48,18 +48,17 @@ export class DatabaseService {
     }));
   }
 
-  // pas fini ici!
-  async getRangs(jardinID:string, xparcelle:number, yparcelle:number):Promise<Rang[]> {
-    const result = await this.query(``);
-    /* return result[1].rows.map((rang:Rang) => ({
+
+  async getRangs(jardinID:string):Promise<Rang[]> {
+	const result = await this.query(`SELECT * FROM Rang WHERE JardinId like '%${jardinID}%';`);
+     return result[1].rows.map((rang:Rang) => ({
           jardinid:rang.jardinid,
           xparcelle:rang.xparcelle,
           yparcelle:rang.yparcelle,
 		  numerorang: rang.numerorang,
           xrang: rang.xrang,
 		  yrang: rang.yrang
-    })); */
-	return result[1];
+    })); 
   }
 
 

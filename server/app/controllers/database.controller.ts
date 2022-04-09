@@ -22,8 +22,8 @@ export class DatabaseController {
         .catch((e: Error) => console.error(e.stack))
     );
 
-	router.get("/rangs", (req: Request, res: Response, _: NextFunction) => 
-      this.databaseService.getRangs(req.params.jardinID, req.params.xparcelle,req.params.yparcelle).then(rangs => {res.json(rangs)})
+	router.get("/rangs/:jardinID", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getRangs(req.params.jardinID).then(rangs => {res.json(rangs)})
         .catch((e: Error) => console.error(e.stack))
     );
 

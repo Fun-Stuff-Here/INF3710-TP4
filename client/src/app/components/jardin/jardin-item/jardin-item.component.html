@@ -14,10 +14,14 @@
 		  	<th>Largeur</th>
 		  	<th>Longueur</th>
 		</tr>
-		<tr *ngFor="let parcelle of parcelles; let i = index">
+		<tr  id="parcelle" *ngFor="let parcelle of parcelles; let i = index" (click)="showRang(parcelle)">
 			<td>({{ parcelle.xparcelle }}, {{ parcelle.yparcelle }})</td>
 			<td>{{ parcelle.largeur }}</td>
 			<td>{{ parcelle.longueur }}</td>
 		</tr>
+		<!-- <tr *ngFor="let rang of rangs; let i = index" (click)="showVariete()">
+			<td>{{ rang.numerorang }}</td>
+			<td>{{ rang.xrang }}, {{ rang.yrang }}</td>
+		</tr> -->
 	</table>
 </mat-expansion-panel>

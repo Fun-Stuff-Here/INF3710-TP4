@@ -23,11 +23,4 @@ export class JardinComponent implements OnInit {
             this.jardins = receivedJardins;
 		});
 	}
-
-	/*
-	private getRangs(jardinID:string, xparcelle:number, yparcelle:number): void {
-		this.httpManager.getRangs(jardinID, xparcelle, yparcelle).subscribe((receivedRangs:Rang[])=>{
-		  this.rang = receivedRangs;
-	  });
-  	} */
 }

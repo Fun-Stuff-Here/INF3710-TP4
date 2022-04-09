@@ -24,8 +24,8 @@ export class HttpRequestManagerService {
 	getParcelles(jardinID:string): Observable<Parcelle[]> {
         return this.http.get<Parcelle[]>(`${GET_PARCELLE_RUL}${jardinID}`);
     }
-	getRangs(jardinID:string, xparcelle:number, yparcelle:number): Observable<Rang[]> {
-        return this.http.get<Rang[]>(`${GET_RANG_RUL}`);
+	getRangs(jardinID:string): Observable<Rang[]> {
+        return this.http.get<Rang[]>(`${GET_RANG_RUL}${jardinID}`);
     }
     getVarietes(): Observable<Variete[]> {
         return this.http.get<Variete[]>(`${GET_VARIETE_RUL}`);
