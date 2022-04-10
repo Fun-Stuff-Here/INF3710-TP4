@@ -1,7 +1,9 @@
 #parcelle:hover {
     color: #9A75F0;
 }
-
+#parcelle{
+	background-color: white;
+}
 .contentCell {
     padding-left: 24px;
 	padding-right: 24px;
