@@ -74,3 +74,8 @@
 .input {
     float: right;
 }
+
+.input-number {
+    padding-right: 9%;
+    float: right;
+}

@@ -59,6 +59,7 @@
 #rightdelete {
     float: right;
     margin-right: -7em;
+    background-color: red;
 }
 
 #rightmodify {

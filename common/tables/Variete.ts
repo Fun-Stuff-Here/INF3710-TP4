@@ -1,13 +1,13 @@
 export interface Variete {
-    id: number;
-    name: string;
-    yearMarket: number;
-    plantingDescription: string;
-    maintenanceDescription: string;
-    seedingDescription: string;
-    harvestDescription: string;
-    plantingPeriod: string;
-    harvestPeriod: string;
-    comment: string;
-    goodSoils: string;
+    varieteid: number;
+    nomvariete: string;
+    anneemiseenmarche: number;
+    descriptionplantation: string;
+    descriptionentretien: string;
+    descriptionsemis: string;
+    descriptionrecolte: string;
+    periodemiseplace: string;
+    perioderecolte: string;
+    commentaire: string;
+    solsbiensadaptes: string;
 }

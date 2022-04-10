@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
+import { Variete } from "../../../common/tables/Variete";
 import { DatabaseService } from "../services/database.service";
 import Types from "../types";
-import { Variete } from "../../../common/tables/Variete";
-import * as pg from "pg";
 
 @injectable()
 export class DatabaseController {
@@ -13,38 +12,57 @@ export class DatabaseController {
 	
   public get router(): Router {
     const router: Router = Router();
-	router.get("/jardins", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.getJardins().then(jardins => res.json(jardins)).catch((e: Error) => {
-			console.error(e.stack);
-		})
-	});
+	router.get("/jardins", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getJardins().then(jardins => {res.json(jardins)})
+        .catch((e: Error) => console.error(e.stack))
+    );
 
-	router.get("/varietes", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.getVarietes().then((result: pg.QueryResult) => {
-			const varietes: Variete[] = result.rows.map((variete: Variete) => ({
-				id: variete.id,
-				name: variete.name,
-				yearMarket: variete.yearMarket,
-    			plantingDescription: variete.plantingDescription,
-    			maintenanceDescription: variete.maintenanceDescription,
-    			seedingDescription: variete.seedingDescription,
-    			harvestDescription: variete.harvestDescription,
-    			plantingPeriod: variete.plantingPeriod,
-    			harvestPeriod: variete.harvestPeriod,
-    			comment: variete.comment,
-    			goodSoils: variete.goodSoils,
-			}));
-			res.json(varietes);
-		})
-		.catch((e: Error) => {
-			console.error(e.stack);
-		})
-	});
+	router.get("/parcelles/:jardinID", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getParcelles(req.params.jardinID).then(parcelles => {res.json(parcelles)})
+        .catch((e: Error) => console.error(e.stack))
+    );
+
+	router.get("/rangs/:jardinID", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getRangs(req.params.jardinID).then(rangs => {res.json(rangs)})
+        .catch((e: Error) => console.error(e.stack))
+    );
+
+	router.get("/rangs/varietes/:jardinID", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getVarietesOfRang(req.params.jardinID).then(varietes => {res.json(varietes)})
+        .catch((e: Error) => console.error(e.stack))
+    );
+
+	router.get("/varietes", (req: Request, res: Response, _: NextFunction) => 
+      this.databaseService.getVarietes().then(varietes => {res.json(varietes)})
+        .catch((e: Error) => console.error(e.stack))
+    );
 
 	router.delete("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.deleteVariete(req.params.id).then().catch((e: Error) => {
-			console.error(e.stack);
-		})
+		this.databaseService.deleteVariete(req.params.id).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
+	});
+
+	router.get("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
+		this.databaseService.getVariete(req.params.id).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
+	});
+
+	router.put("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
+		const newVariete: Variete = {
+			varieteid: req.body.varieteid,
+			nomvariete: req.body.nomvariete,
+			anneemiseenmarche: req.body.anneemiseenmarche,
+			descriptionplantation: req.body.descriptionplantation,
+			descriptionentretien: req.body.descriptionentretien,
+			descriptionsemis: req.body.descriptionsemis,
+			descriptionrecolte: req.body.descriptionrecolte,
+			periodemiseplace: req.body.periodemiseplace,
+			perioderecolte: req.body.perioderecolte,
+			commentaire: req.body.commentaire,
+			solsbiensadaptes: req.body.solsbiensadaptes,
+		}
+		this.databaseService.updateVariete(req.params.id, newVariete).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
 	});
 
     router.get("/plant/:name", (req: Request, res: Response, _: NextFunction) => 

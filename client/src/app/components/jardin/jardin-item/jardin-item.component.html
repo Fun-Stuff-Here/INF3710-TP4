@@ -1,17 +1,23 @@
-<mat-expansion-panel hideToggle="true">
+<mat-expansion-panel hideToggle="true" (opened)="showInfo(item.jardinid)" >
 	<mat-expansion-panel-header>
-		<tr>
-			<td class="contentCell" width="400">{{ item.name }}</td>
-			<td class="contentCell" width="250">{{ item.id}}</td>
-			<td class="contentCell" width="150">{{ item.area }}</td>
-		</tr>
+		<table width="100%" class="items">
+			<tr>
+				<td class="contentCell" width="45%">{{ item.nom }}</td>
+				<td class="contentCell" width="30%">{{ item.jardinid}}</td>
+				<td class="contentCell" width="25%">{{ item.surfacejardin }}</td>
+			</tr>
+		</table>
 	</mat-expansion-panel-header>
-	<table>
+	<table align="center" border="1" width="100%">
 		<tr>
-			Parcelles: 
+		  	<th>Position parcelle</th>
+		  	<th>Largeur</th>
+		  	<th>Longueur</th>
 		</tr>
-		<tr>
-			Rangs: (on peut voir les variétés de plante ici)
+		<tr  id="parcelle" *ngFor="let parcelle of parcelles; let i = index" (click)="goToRang(parcelle)">
+			<td>({{ parcelle.xparcelle }}, {{ parcelle.yparcelle }})</td>
+			<td>{{ parcelle.largeur }}</td>
+			<td>{{ parcelle.longueur }}</td>
 		</tr>
 	</table>
 </mat-expansion-panel>
