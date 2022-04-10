@@ -33,12 +33,12 @@ export class DatabaseController {
     );
 
 	router.delete("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.deleteVariete(req.params.id).then(variete => {res.json(variete)})
+		this.databaseService.deleteVariete(Number(req.params.id)).then(variete => {res.json(variete)})
         .catch((e: Error) => console.error(e.stack))
 	});
 
 	router.get("/varietes/:id", (req: Request, res: Response, _: NextFunction) => {
-		this.databaseService.getVariete(req.params.id).then(variete => {res.json(variete)})
+		this.databaseService.getVariete(Number(req.params.id)).then(variete => {res.json(variete)})
         .catch((e: Error) => console.error(e.stack))
 	});
 
@@ -56,7 +56,7 @@ export class DatabaseController {
 			commentaire: req.body.commentaire,
 			solsbiensadaptes: req.body.solsbiensadaptes,
 		}
-		this.databaseService.updateVariete(req.params.id, newVariete).then(variete => {res.json(variete)})
+		this.databaseService.updateVariete(Number(req.params.id), newVariete).then(variete => {res.json(variete)})
         .catch((e: Error) => console.error(e.stack))
 	});
 

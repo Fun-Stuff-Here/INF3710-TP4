@@ -79,9 +79,9 @@ CREATE TABLE Variete(
 CREATE TABLE Plante(
 	NomLatin VARCHAR(30),
 	VarieteId SERIAL,
-	Categorie VARCHAR(20) NOT NULL,
-	Type VARCHAR(20) NOT NULL,
-	SousType VARCHAR(20),
+	Categorie TEXT NOT NULL,
+	Type TEXT NOT NULL,
+	SousType TEXT,
 	PRIMARY KEY(NomLatin),
 	FOREIGN KEY (VarieteId) REFERENCES Variete(VarieteId) ON UPDATE CASCADE ON DELETE SET NULL
 );
@@ -92,7 +92,7 @@ CREATE TABLE MiseEnPlace(
 	XParcelle NUMERIC(6,0),
 	YParcelle NUMERIC(6,0),
 	NumeroRang SERIAL,
-	MiseEnPlace VARCHAR(20),
+	MiseEnPlace TEXT,
 	estBiologique BOOLEAN DEFAULT FALSE,
 	PRIMARY KEY (NomLatin,JardinId, XParcelle,YParcelle,NumeroRang),
 	FOREIGN KEY (NomLatin) REFERENCES Plante(NomLatin) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -127,7 +127,7 @@ CREATE TABLE SubirMenace(
 
 CREATE TABLE Semencier(
 	Nom VARCHAR(20),
-	SiteWeb TEXT, /*checker pour un type url*/
+	SiteWeb TEXT,
 	PRIMARY KEY (nom)
 );
 
