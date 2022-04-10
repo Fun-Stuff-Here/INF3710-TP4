@@ -2,6 +2,7 @@ import * as http from "http";
 import { inject, injectable } from "inversify";
 import { AddressInfo } from "net";
 import { Application } from "./app";
+import { DatabaseService } from "./services/database.service";
 import Types from "./types";
 
 @injectable()
@@ -11,13 +12,15 @@ export class Server {
   private server: http.Server;
 
 
-  public constructor(@inject(Types.Application) private application: Application) {}
+  public constructor(
+    @inject(Types.Application) private application: Application,
+    @inject(Types.DatabaseService) private databaseService: DatabaseService) {}
 
   public init(): void {
     this.application.app.set("port", this.appPort);
 
     this.server = http.createServer(this.application.app);
-
+    this.databaseService.reset();
     this.server.listen(this.appPort);
     this.server.on("error", (error: NodeJS.ErrnoException) => this.onError(error));
     this.server.on("listening", () => this.onListening());

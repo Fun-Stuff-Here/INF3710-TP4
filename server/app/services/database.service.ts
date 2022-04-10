@@ -7,6 +7,7 @@ import {Jardin} from '../../../common/tables/Jardin';
 import {Parcelle} from '../../../common/tables/Parcelle';
 import {Rang} from '../../../common/tables/Rang';
 import { Variete } from '../../../common/tables/Variete';
+import * as fs from 'fs';
 
 @injectable()
 export class DatabaseService {
@@ -164,6 +165,13 @@ export class DatabaseService {
     const res = await client.query(queryText);
     client.release();
     return res;
+  }
+
+  async reset(): Promise<void>{
+    const bdSchema = fs.readFileSync('../database/bdschema.sql').toString();
+    await this.query(bdSchema);
+    const data = fs.readFileSync('../database/data.sql').toString();
+    await this.query(data);
   }
 
 }
