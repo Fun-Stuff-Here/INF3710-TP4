@@ -23,7 +23,7 @@ export class DatabaseController {
     );
 
 	router.get("/rangs/:jardinID/:xparcelle/:yparcelle", (req: Request, res: Response, _: NextFunction) => 
-      this.databaseService.getRangsAndVarietes(req.params.jardinID, req.params.xparcelle, req.params.yparcelle).then(rangs => {res.json(rangs)})
+      this.databaseService.getRangsAndVarietes(req.params.jardinID, +(req.params.xparcelle), +(req.params.yparcelle)).then(rangs => {res.json(rangs)})
         .catch((e: Error) => console.error(e.stack))
     );
 
