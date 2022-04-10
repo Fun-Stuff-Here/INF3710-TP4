@@ -7,7 +7,6 @@ import { VarieteComponent } from "./components/variete/variete";
 import { ModifyVarieteComponent } from "./components/modify-variete/modify-variete";
 import { PlanteComponent } from "./components/plante/plante";
 import { RangComponent } from "./components/jardin/Rang/rang";
-import { JardinVarietesComponent } from "./components/jardin/varietes/variete";
 
 const routes: Routes = [
   { path: "app", component: AppComponent },
@@ -15,8 +14,7 @@ const routes: Routes = [
   { path: "varietes", component: VarieteComponent },
   { path: "varietes/:id", component: ModifyVarieteComponent },
   { path: "rang/:jardinID/:xparcelle/:yparcelle", component: RangComponent },
-  { path: "plantes", component: PlanteComponent },
-  { path: "rang/varietes/:jardinID/:numerorang/:xrang/:yrang/:xparcelle/:yparcelle", component: JardinVarietesComponent },
+  { path: "plantes", component: PlanteComponent }
 ];
 
 @NgModule({

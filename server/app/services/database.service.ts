@@ -5,7 +5,7 @@ import { DATABASE_CONFIG, SEARCH_PATH } from "../constants/database-config";
 import {Plant} from '../../../common/tables/Plant';
 import {Jardin} from '../../../common/tables/Jardin';
 import {Parcelle} from '../../../common/tables/Parcelle';
-import {Rang} from '../../../common/tables/Rang';
+import {VueRang} from '../../../common/tables/VueRang';
 import { Variete } from '../../../common/tables/Variete';
 
 @injectable()
@@ -48,33 +48,23 @@ export class DatabaseService {
     }));
   }
 
-  async getVarietesOfRang(jardinID: string):Promise<Variete[]> {
-    const result = await this.query(`SELECT * FROM Variete;`);
-    return result[1].rows.map((variete: Variete) => ({
-      varieteid: variete.varieteid,
-      nomvariete: variete.nomvariete,
-      anneemiseenmarche: variete.anneemiseenmarche,
-      descriptionplantation: variete.descriptionplantation,
-      descriptionentretien: variete.descriptionentretien,
-      descriptionsemis: variete.descriptionsemis,
-      descriptionrecolte: variete.descriptionrecolte,
-      periodemiseplace: variete.periodemiseplace,
-      perioderecolte: variete.perioderecolte,
-      commentaire: variete.commentaire,
-      solsbiensadaptes: variete.solsbiensadaptes,
-    }));
-  }
-
-
-  async getRangs(jardinID:string):Promise<Rang[]> {
-	const result = await this.query(`SELECT * FROM Rang WHERE JardinId like '%${jardinID}%';`);
-     return result[1].rows.map((rang:Rang) => ({
+  async getRangsAndVarietes(jardinID:string, xparcelle:Number, yparcelle:Number):Promise<VueRang[]> {
+	 const result = await this.query(`SELECT * FROM VueRang LEFT OUTER JOIN (
+		SELECT JardinId, XParcelle, YParcelle, NumeroRang, VarieteId 
+		FROM PlanteRang GROUP BY JardinId, XParcelle, YParcelle, NumeroRang, VarieteId)
+		as ab USING(JardinId, XParcelle, YParcelle, NumeroRang)
+		WHERE VueRang.JardinId like '%${jardinID}%' AND VueRang.XParcelle=${xparcelle} AND VueRang.YParcelle=${yparcelle};`
+		);
+     return result[1].rows.map((rang:VueRang) => ({
           jardinid:rang.jardinid,
           xparcelle:rang.xparcelle,
           yparcelle:rang.yparcelle,
 		  numerorang: rang.numerorang,
           xrang: rang.xrang,
-		  yrang: rang.yrang
+		  yrang: rang.yrang,
+		  debutjachere: rang.debutjachere,
+		  varieteid: rang.varieteid,
+		  nomVariete: null
     })); 
   }
 

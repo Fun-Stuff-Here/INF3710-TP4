@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpRequestManagerService } from "src/app/services/HttpRequestManager.service";
-import { Rang } from "../../../../../../common/tables/Rang";
+import { Variete } from "../../../../../../common/tables/Variete";
+import { VueRang } from "../../../../../../common/tables/VueRang";
 
 @Component({
   selector: "app-jardin-rang",
@@ -9,7 +10,7 @@ import { Rang } from "../../../../../../common/tables/Rang";
   styleUrls: ["./rang.css"],
 })
 export class RangComponent implements OnInit {
-	rangs: Rang[] = [];
+	rangs: VueRang[] = [];
 	jardinID: string;
 	xparcelle: Number;
 	yparcelle: Number;
@@ -20,28 +21,33 @@ export class RangComponent implements OnInit {
 		private router: Router
 	){}
 
-	ngOnInit(): void {
+	ngOnInit() {
 		this.jardinID = (this.route.snapshot.paramMap.get('jardinID') as string);
 		this.xparcelle = +(this.route.snapshot.paramMap.get('xparcelle') as string);
 		this.yparcelle = +(this.route.snapshot.paramMap.get('yparcelle') as string);
 
-		this.getRangs(this.jardinID,this.xparcelle,this.yparcelle);
+		this.getRangsAndVarietes(this.jardinID,this.xparcelle,this.yparcelle);
+	} 
+	
+	getRangsAndVarietes(jardinID:string, xparcelle:Number, yparcelle:Number) {
+		this.httpManager.getRangsAndVarietes(jardinID, xparcelle,yparcelle).subscribe((receivedRangs:VueRang[])=>{
+		  this.rangs = receivedRangs;
+		  this.getVarieteName();
+		});
+  	} 
+	
+	getVarieteName(){
+		this.rangs.forEach(rang => {
+			if(rang.varieteid){
+				let id: number = +rang.varieteid;
+				this.httpManager.getVariete(id).subscribe((rangVariete: Variete) => {
+					rang.nomVariete = rangVariete.nomvariete;
+				});
+			}
+		});
 	}
 
-	private getRangs(jardinID:string, xparcelle:Number, yparcelle:Number): void {
-		this.httpManager.getRangs(jardinID).subscribe((receivedRangs:Rang[])=>{
-		  this.rangs = receivedRangs.filter(function(rang) {
-			return rang.xparcelle == xparcelle && rang.yparcelle == yparcelle;
-		});
-	  });
-  	}
-	
 	goBack(){
 		this.router.navigate(['/jardin']);
 	}
-
-	goToVariete(rang: Rang): void {
-        this.router.navigate(['/rang/varietes/' + rang.jardinid + '/' + rang.numerorang + '/' + rang.xrang + '/' + rang.yrang + '/' + rang.xparcelle + '/' + rang.yparcelle]);
-    }
-
 }
