@@ -3,12 +3,16 @@
     font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 3%;
+    justify-content: space-between;
+    flex-direction: column;
+    display: flex;
 }
 
 #ht {
     background-color: white;
     text-align: left;
     float: left;
+    margin-left: 15%;
 }
 
 .divider {
@@ -54,13 +58,13 @@
 }
 
 .submitbtn {
+    margin-left: 48%;
     margin-top: 25px;
+    align-self: center;
     border-radius: 4px;
     color: white; 
     background-color: green; 
     border-style: none;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 #rightdelete {
@@ -70,8 +74,17 @@
 
 #info {
     color: black;
+    float: inline-end;
 }
 
 .input {
+    margin-top: 1%;
     float: right;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.div-button {
+    justify-content: flex;
+    display: flex;
 }

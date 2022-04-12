@@ -1,0 +1,26 @@
+<div id="variete">
+    <h1>Ajouter une variété</h1>
+
+    <div class="divider"></div>
+    <div *ngIf="!hasAdded" id="variete">
+        <table id="ht" align="center" border="1" width="70%" class="table-striped table-hover">
+            <tr *ngFor="let attribute of attributes; index as i" class="header">
+                <th class="contentCell">{{attribute}}</th>
+                <p *ngIf="isNumber(values[i]) && !isYear(i)" class="contentCell" id="info">{{ values[i] }}</p>
+                <input *ngIf="isYear(i)" [(ngModel)]="values[i]" type="number" class="input" max="2022" min="0">
+                <p *ngIf="!yearIsGood && isYear(i)" style="color: red; float: right; margin-right: 5px;">Entrez une année entre 0 et 2022</p>
+                <input *ngIf="isString(values[i]) && !isName(i) && !isYear(i)" [(ngModel)]="values[i]" type="string" class="input">
+                <input *ngIf="isString(values[i]) && isName(i)" [(ngModel)]="values[i]" type="string" class="input" maxlength="30">
+                
+            </tr>
+            
+        </table>
+        <div class="div-button">
+            <button (click)="submitVariete()" class="submitbtn" id="rightmodify">Soumettre</button>
+        </div>
+    </div>
+    
+    <div *ngIf="hasAdded">
+        <h2>La variété a bien été rajoutée</h2>
+    </div>
+</div>
