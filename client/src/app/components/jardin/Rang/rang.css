@@ -9,7 +9,9 @@
     background-color: white;
     text-align: left;
 }
-
+hr{
+	color: #e2e2e2;
+}
 .divider {
     border-bottom: 1px solid #9A75F0;
     margin: auto;

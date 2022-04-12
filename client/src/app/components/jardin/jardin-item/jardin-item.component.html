@@ -11,8 +11,8 @@
 	<table align="center" border="1" width="100%">
 		<tr>
 		  	<th>Position parcelle</th>
-		  	<th>Largeur</th>
-		  	<th>Longueur</th>
+		  	<th>Largeur (m)</th>
+		  	<th>Longueur (m)</th>
 		</tr>
 		<tr  id="parcelle" *ngFor="let parcelle of parcelles; let i = index" (click)="goToRang(parcelle)">
 			<td>({{ parcelle.xparcelle }}, {{ parcelle.yparcelle }})</td>
