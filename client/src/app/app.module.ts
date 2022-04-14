@@ -15,16 +15,18 @@ import { JardinItemComponent } from "./components/jardin/jardin-item/jardin-item
 import { ModifyVarieteComponent } from "./components/modify-variete/modify-variete";
 import { PlanteComponent } from "./components/plante/plante";
 import { RangComponent } from "./components/jardin/Rang/rang";
+import { AddVarieteComponent } from "./components/add-variete/add-variete";
 
 @NgModule({
   declarations: [
     AppComponent,
     JardinComponent,
     VarieteComponent,
-	JardinItemComponent,
+	  JardinItemComponent,
     ModifyVarieteComponent,
     PlanteComponent,
-	RangComponent
+	  RangComponent,
+    AddVarieteComponent,
   ],
   imports: [
     CommonModule,
