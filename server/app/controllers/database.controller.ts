@@ -60,6 +60,24 @@ export class DatabaseController {
         .catch((e: Error) => console.error(e.stack))
 	});
 
+  router.put("/varietes", (req: Request, res: Response, _: NextFunction) => {
+		const newVariete: Variete = {
+			varieteid: req.body.varieteid,
+			nomvariete: req.body.nomvariete,
+			anneemiseenmarche: req.body.anneemiseenmarche,
+			descriptionplantation: req.body.descriptionplantation,
+			descriptionentretien: req.body.descriptionentretien,
+			descriptionsemis: req.body.descriptionsemis,
+			descriptionrecolte: req.body.descriptionrecolte,
+			periodemiseplace: req.body.periodemiseplace,
+			perioderecolte: req.body.perioderecolte,
+			commentaire: req.body.commentaire,
+			solsbiensadaptes: req.body.solsbiensadaptes,
+		}
+		this.databaseService.insertVariete(Number(req.params.id), newVariete).then(variete => {res.json(variete)})
+        .catch((e: Error) => console.error(e.stack))
+	});
+
     router.get("/plant/:name", (req: Request, res: Response, _: NextFunction) => 
       this.databaseService.getPlantsByName(req.params.name).then(plants => {res.json(plants)})
         .catch((e: Error) => console.error(e.stack))

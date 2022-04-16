@@ -108,7 +108,7 @@ export class AddVarieteComponent implements OnInit {
         this.variete.perioderecolte = this.values[8];
         this.variete.commentaire = this.values[9];
         this.variete.solsbiensadaptes = this.values[10];
-        this.httpManager.putVariete(this.variete.varieteid, this.variete).subscribe(() => {
+        this.httpManager.putNewVariete(this.variete).subscribe(() => {
             this.hasAdded = true;
         });
         }

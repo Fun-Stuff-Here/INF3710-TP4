@@ -148,6 +148,44 @@ export class DatabaseService {
       solsbiensadaptes: variete.solsbiensadaptes,
     }))[0];
   }
+
+  async insertVariete(id: number, newVariete: Variete): Promise<Variete> {
+	  const result = await this.query(`INSERT INTO Variete (VarieteId,
+      NomVariete,
+      AnneeMiseEnMarche,
+      DescriptionPlantation,
+      DescriptionEntretien,
+      DescriptionSemis,
+      DescriptionRecolte,
+      PeriodeMisePlace,
+      PeriodeRecolte, 
+      Commentaire,
+      SolsBiensAdaptes) VALUES
+      (${newVariete.varieteid},
+      '${newVariete.nomvariete}',
+      ${newVariete.anneemiseenmarche},
+      '${newVariete.descriptionplantation}',
+      '${newVariete.descriptionentretien}',
+      '${newVariete.descriptionsemis}',
+      '${newVariete.descriptionrecolte}',
+      '${newVariete.periodemiseplace}',
+      '${newVariete.perioderecolte}',
+      '${newVariete.commentaire}',
+      '${newVariete.solsbiensadaptes}');`);
+    return result[1].rows.map((variete: Variete) => ({
+      varieteid: variete.varieteid,
+      nomvariete: variete.nomvariete,
+      anneemiseenmarche: variete.anneemiseenmarche,
+      descriptionplantation: variete.descriptionplantation,
+      descriptionentretien: variete.descriptionentretien,
+      descriptionsemis: variete.descriptionsemis,
+      descriptionrecolte: variete.descriptionrecolte,
+      periodemiseplace: variete.periodemiseplace,
+      perioderecolte: variete.perioderecolte,
+      commentaire: variete.commentaire,
+      solsbiensadaptes: variete.solsbiensadaptes,
+    }))[0];
+  }
   
   async query(query: string): Promise<pg.QueryResult> {
     const client = await this.pool.connect();
