@@ -1,6 +1,5 @@
-# INF3710_TutorielApp
+# INF3710_TP4   
 
-Tutoriel du projet d'INF3710
 
 ## Avant de lancer le projet
 - Assurez-vous que Postgres roule sur vos machines 
@@ -11,7 +10,7 @@ Tutoriel du projet d'INF3710
 
 - Allez dans `/server` et lancez `npm install​`
 
-- Allez dans `/server/app/services/database.service.ts` et modifiez `connectionConfig` avec les bons paramètres de votre BD​
+- Allez dans `/server/app/constants/databse-config.ts` et modifiez `DATABASE_CONFIG` avec les bons paramètres de votre BD​
 
 ## Pour lancer le projet
 
@@ -19,9 +18,3 @@ Tutoriel du projet d'INF3710
 
 - Allez dans `/client` et faites `npm start`​
 
-## Demo Screenshots (remove for actual readme)
-
-![Main Page](./imgs/mainpage.PNG "Welcome Page")
-![Hotels Page](./imgs/hotels.PNG "Hotels Page")
-![Rooms Page](./imgs/rooms.PNG "Rooms Page")
-![Guests Page](./imgs/guests.PNG "Guests Page")
