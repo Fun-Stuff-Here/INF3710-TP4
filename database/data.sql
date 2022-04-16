@@ -100,7 +100,7 @@ INSERT INTO Variete
             'Au printemps',
             'Peut atteindre jusqu à 40 centimètres de hauteur',
             'À part égale de terreau, sable et tourbe'
-        )
+        ),
         (
             5,
             'Amaranthe',
@@ -113,7 +113,7 @@ INSERT INTO Variete
             'Au printemps',
             'Peut atteindre jusqu à 40 centimètres de hauteur',
             'À part égale de terreau, sable et tourbe'
-        )
+        ),
         (
             6,
             'Fougère',
@@ -126,8 +126,7 @@ INSERT INTO Variete
             'Au printemps',
             'Peut atteindre jusqu à 40 centimètres de hauteur',
             'À part égale de terreau, sable et tourbe'
-        )
-        ;
+        );
 
 INSERT INTO Plante
         (NomLatin, VarieteId, Categorie, Type, SousType)
