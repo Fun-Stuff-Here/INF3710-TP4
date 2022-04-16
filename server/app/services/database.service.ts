@@ -162,6 +162,8 @@ export class DatabaseService {
     await this.query(bdSchema);
     const data = fs.readFileSync('../database/data.sql').toString();
     await this.query(data);
+    const trigger = fs.readFileSync('../database/trigger.sql').toString();
+    await this.query(trigger);
   }
 
 }

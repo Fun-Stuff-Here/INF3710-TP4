@@ -13,7 +13,6 @@ CREATE TABLE Jardin (
 	HauteurMaximal NUMERIC(6,3),
 	OrnementFlag BOOLEAN DEFAULT FALSE,
 	PRIMARY KEY (JardinId)
-	/*ADD CONSTRAINT FOR PLANTS*/
 );
 
 CREATE TABLE Parcelle (
