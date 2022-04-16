@@ -62,7 +62,7 @@ CREATE TABLE RangJachere(
 
 CREATE TABLE Variete(
 	VarieteId SERIAL,
-	NomVariete VARCHAR(30),
+	NomVariete VARCHAR(30) NOT NULL,
 	AnneeMiseEnMarche NUMERIC(4,0),
 	DescriptionPlantation TEXT,
 	DescriptionEntretien TEXT,
