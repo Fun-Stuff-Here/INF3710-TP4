@@ -165,3 +165,59 @@ Variete NATURAL JOIN Plante;
 CREATE VIEW PlanteMenace
 AS SELECT * FROM
 Menace NATURAL JOIN SubirMenace NATURAL JOIN Plante;
+
+
+CREATE OR REPLACE FUNCTION getTypeJardin(VARCHAR(10)) RETURNS INT AS $$
+	DECLARE
+	jardinRow Jardin%rowtype;
+	jardinType INT :=0;
+	BEGIN
+		SELECT * FROM Jardin into jardinRow WHERE Jardin.JardinId = $1;
+		if(jardinRow.potagerflag) then
+			jardinType := 1;
+		end if;
+		if(jardinRow.vergerflag) then
+			jardinType := 2;
+		end if;
+		if(jardinRow.ornementflag) then
+			jardinType := 2;
+		end if;
+
+		return jardinType;
+END $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION getPlanteCategorie(VARCHAR(10)) RETURNS INT AS $$
+	DECLARE
+	planteRow Plante%rowtype;
+	categorieType INT :=0;
+	BEGIN
+		SELECT * FROM Plante into planteRow WHERE Plante.NomLatin = $1;
+		if(planteRow.Categorie = 'Légume') then
+			categorieType := 1;
+		end if;
+		if(planteRow.Categorie = 'Arbre') then
+			categorieType := 2;
+		end if;
+		if(planteRow.Categorie = 'Fleur') then
+			categorieType := 2;
+		end if;
+
+		return categorieType;
+END $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION jardin_check() RETURNS TRIGGER AS $$
+	DECLARE
+	jardinType INT;
+	categorieType INT;
+	BEGIN
+		jardinType := getTypeJardin(OLD.JardinId);
+		categorieType := getPlanteCategorie(OLD.NomLatin);
+		if(jardinType != categorieType) THEN
+			raise notice 'Insertion du type de plante % est invalid pour le jardin du type %',categorieType, jardinType;
+		end if;
+		return NEW;
+	END; $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER jardin_check_trigger BEFORE INSERT ON MiseEnPlace
+FOR EACH ROW EXECUTE PROCEDURE jardin_check();

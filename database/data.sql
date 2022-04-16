@@ -131,10 +131,10 @@ INSERT INTO Variete
 INSERT INTO Plante
         (NomLatin, VarieteId, Categorie, Type, SousType)
     VALUES
-        ('Solanum tuberosum', 1, 'Racine', 'Plante herbacée', 'Légume racine'),
-        ('Amelanchier canadensis', 2, 'Fleur', 'Arbre fruitier', 'Baie'),
-        ('Brassica oleracea italica', 3, 'Fleur', 'Plante herbacée', 'Légume fleur'),
-        ('Capillaire', 4, 'Vivace', 'Fougère', 'Fougère dintérieur');
+        ('Solanum tuberosum', 1, 'Légume', 'Plante herbacée', 'Légume racine'),
+        ('Amelanchier canadensis', 2, 'Arbre', 'Arbre fruitier', 'Baie'),
+        ('Brassica oleracea italica', 3, 'Légume', 'Plante herbacée', 'Légume fleur'),
+        ('Capillaire', 4, 'Fleur', 'Fougère', 'Fougère dintérieur');
 
 
 INSERT INTO MiseEnPlace
