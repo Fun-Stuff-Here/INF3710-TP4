@@ -1,3 +1,5 @@
+SET search_path = "Jardin";
+
 CREATE TABLE IF NOT EXISTS varieteaudit(
 	id serial not null,
 	nomlatin VARCHAR(30),
@@ -18,9 +20,3 @@ $miseenplace$ LANGUAGE plpgsql;
 
 CREATE TRIGGER variete_audit_trigger AFTER INSERT ON miseenplace
 FOR EACH ROW EXECUTE PROCEDURE variete_audit_log();
-
---Exécutez pour tester
---INSERT INTO MiseEnPlace (NomLatin, JardinId, XParcelle, YParcelle, NumeroRang, MiseEnPlace, estBiologique)
---VALUES ('Amelanchier canadensis', '1', 10000, 20000, 1, 'plant', FALSE);
-
---select * from varieteaudit;

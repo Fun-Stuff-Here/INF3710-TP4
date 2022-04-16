@@ -57,7 +57,6 @@ CREATE TABLE RangJachere(
 	FOREIGN KEY (JardinId, XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId, XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT JachereTropLong 
 	CHECK (DATE_PART('days',DebutJachere) -DATE_PART('days',current_date) <365)
-
 );
 
 
