@@ -6,18 +6,18 @@ SET search_path = "Jardin";
 
 SELECT *
 FROM Plante
-WHERE Plante.NomLatin IN(
-	SELECT NomLatin
+WHERE Plante.NomLatin IN (
+	SELECT DISTINCT NomLatin
 	FROM PlanteRang
-	WHERE JardinId = 'id' /*variable du jardin id icitte*/
 );
 
 /*2) (2 points) Lister le nombre de rangs minimum et maximum sur les parcelles d’un jardin donné (choisissez-en dans vos données)*/
 
 SELECT JardinId, XParcelle, YParcelle, MIN(NumeroRang), MAX(NumeroRang)  
 FROM JardinAugmente
-WHERE JardinAugmente.JardinId = 'id' /*variable du jardin id icitte*/
+WHERE JardinAugmente.JardinId = '1'
 GROUP BY JardinId, XParcelle, YParcelle; 
+
 
 /*3) (2 points) Lister les détails des parcelles qui ont la variété de plante A et la variété de plante B*/
 SELECT *
@@ -26,11 +26,11 @@ WHERE (Parcelle.jardinid, Parcelle.xparcelle, Parcelle.yparcelle) IN(
 	(
 		SELECT jardinid, xparcelle, yparcelle 
 		FROM PlanteRang
-		WHERE PlanteRang.VarieteId = 2 /*variable de la varieter A icitte*/ 
+		WHERE PlanteRang.VarieteId = 3 
 	) INTERSECT (
 		SELECT jardinid, xparcelle, yparcelle
 		FROM PlanteRang
-		WHERE PlanteRang.VarieteId = 3 /*variable de la varieter B icitte*/ 
+		WHERE PlanteRang.VarieteId = 1 
 	)
 ); 
 
@@ -42,11 +42,11 @@ WHERE (Parcelle.jardinid, Parcelle.xparcelle, Parcelle.yparcelle) IN(
 	(
 		SELECT jardinid, xparcelle, yparcelle 
 		FROM PlanteRang
-		WHERE PlanteRang.VarieteId = 2 /*variable de la varieter A icitte*/ 
+		WHERE PlanteRang.VarieteId = 2  
 	) UNION (
 		SELECT jardinid, xparcelle, yparcelle
 		FROM PlanteRang
-		WHERE PlanteRang.VarieteId = 3 /*variable de la varieter B icitte*/ 
+		WHERE PlanteRang.VarieteId = 3 
 	)
 ); 
 
@@ -58,21 +58,26 @@ WHERE (Parcelle.jardinid, Parcelle.xparcelle, Parcelle.yparcelle) IN(
 	(
 		SELECT jardinid, xparcelle, yparcelle 
 		FROM PlanteRang
-		WHERE PlanteRang.VarieteId = 2 /*variable de la varieter A icitte*/ 
+		WHERE PlanteRang.VarieteId = 2 
 	) EXCEPT (
 		SELECT jardinid, xparcelle, yparcelle
 		FROM PlanteRang
-		WHERE PlanteRang.VarieteId = 3 /*variable de la varieter B icitte*/ 
+		WHERE PlanteRang.VarieteId = 3
 	)
 ); 
 
 /*6) (2 points) Lister tous les rangs d’un jardin donné avec leurs variétés de plantes s’ils sont cultivés. Dans le cas contraire, affichez null. */
-SELECT *
-FROM VueRang LEFT OUTER JOIN (
-	SELECT JardinId, XParcelle, YParcelle, NumeroRang, VarieteId 
-	FROM PlanteRang
-	GROUP BY JardinId, XParcelle, YParcelle, NumeroRang, VarieteId
-) as ab USING(JardinId, XParcelle, YParcelle, NumeroRang);
+SELECT * FROM (
+	SELECT *
+		FROM VueRang LEFT OUTER JOIN (
+			SELECT JardinId, XParcelle, YParcelle, NumeroRang, VarieteId 
+			FROM PlanteRang
+			GROUP BY JardinId, XParcelle, YParcelle, NumeroRang, VarieteId
+		) as ab USING(JardinId, XParcelle, YParcelle, NumeroRang)
+	NATURAL LEFT JOIN Variete
+) as ab;
+
+
 
 /*7) (2 points) Quel est le nombre de jardins uniquement avec des semences biologiques ?*/
 
@@ -95,7 +100,7 @@ FROM Menace
 WHERE Menace.MenaceId IN (
 	SELECT MenaceId
 	FROM PlanteMenace
-	WHERE Categorie = 'fougères'
+	WHERE type = 'Fougère'
 );
 
 
@@ -105,7 +110,8 @@ FROM Plante
 WHERE Plante.nomlatin IN(
 	SELECT NomLatin
 	FROM PlanteVariete
-	WHERE Nomvariete = 'tuberosum'
+	WHERE Nomvariete = 'Tuberosum'
 );
+
 
 

@@ -100,7 +100,34 @@ INSERT INTO Variete
             'Au printemps',
             'Peut atteindre jusqu à 40 centimètres de hauteur',
             'À part égale de terreau, sable et tourbe'
-        );
+        )
+        (
+            5,
+            'Amaranthe',
+            1977,
+            'Lumière filtrée et indirecte',
+            'Humidité élevée et bonne aération, donc vaporiser quotidiennement',
+            'Se cultive devant une fenêtre exposée au Nord',
+            'Enlever les vieilles frindes sèches',
+            'Au printemps',
+            'Au printemps',
+            'Peut atteindre jusqu à 40 centimètres de hauteur',
+            'À part égale de terreau, sable et tourbe'
+        )
+        (
+            6,
+            'Fougère',
+            1980,
+            'Lumière filtrée et indirecte',
+            'Humidité élevée et bonne aération, donc vaporiser quotidiennement',
+            'Se cultive devant une fenêtre exposée au Nord',
+            'Enlever les vieilles frindes sèches',
+            'Au printemps',
+            'Au printemps',
+            'Peut atteindre jusqu à 40 centimètres de hauteur',
+            'À part égale de terreau, sable et tourbe'
+        )
+        ;
 
 INSERT INTO Plante
         (NomLatin, VarieteId, Categorie, Type, SousType)
