@@ -81,6 +81,12 @@ table{
     width: 100%;
     
 }
+h1{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
 
 input{
     width: 65vh;
