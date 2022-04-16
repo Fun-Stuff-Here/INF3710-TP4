@@ -55,8 +55,10 @@ CREATE TABLE RangJachere(
 	NumeroRang SERIAL,
 	DebutJachere DATE,
 	PRIMARY KEY (JardinId, XParcelle, YParcelle, NumeroRang),
-	FOREIGN KEY (JardinId, XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId, XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE
-	/*CONSTRAINT siJachereTropLong CHECK ((year(current_date) - year(DebutJachere))<1)*/
+	FOREIGN KEY (JardinId, XParcelle, YParcelle, NumeroRang) REFERENCES Rang(JardinId, XParcelle, YParcelle, NumeroRang) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT JachereTropLong 
+	CHECK (DATE_PART('days',DebutJachere) -DATE_PART('days',current_date) <365)
+
 );
 
 
@@ -71,7 +73,7 @@ CREATE TABLE Variete(
 	PeriodeMisePlace TEXT,
 	PeriodeRecolte TEXT,
 	Commentaire TEXT,
-	SolsBiensAdaptes TEXT,/*On ne sait pas quel type de donne a lui donner a lui*/
+	SolsBiensAdaptes TEXT,
 	PRIMARY KEY (VarieteId)
 );
 
