@@ -95,3 +95,7 @@ input{
     text-align: center;
     font-weight: bold;
 }
+
+#plant{
+    height: 90vh;
+}
